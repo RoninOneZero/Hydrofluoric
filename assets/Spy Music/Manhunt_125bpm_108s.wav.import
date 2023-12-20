@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dmykrnh06wdrd"
+path="res://.godot/imported/Manhunt_125bpm_108s.wav-7d4b05eb7264a89271896b6f484dd33c.sample"
+
+[deps]
+
+source_file="res://assets/Spy Music/Manhunt_125bpm_108s.wav"
+dest_files=["res://.godot/imported/Manhunt_125bpm_108s.wav-7d4b05eb7264a89271896b6f484dd33c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

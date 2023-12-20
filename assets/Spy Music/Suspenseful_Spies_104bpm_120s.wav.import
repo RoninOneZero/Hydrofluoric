@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://k0yjlan030b6"
+path="res://.godot/imported/Suspenseful_Spies_104bpm_120s.wav-fa45b9b1e780c5391c78e6a35e3186d2.sample"
+
+[deps]
+
+source_file="res://assets/Spy Music/Suspenseful_Spies_104bpm_120s.wav"
+dest_files=["res://.godot/imported/Suspenseful_Spies_104bpm_120s.wav-fa45b9b1e780c5391c78e6a35e3186d2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

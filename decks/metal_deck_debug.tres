@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="MetalDeck" load_steps=3 format=3 uid="uid://cnkmha8xovdt5"]
+
+[ext_resource type="Script" path="res://src/metal_deck.gd" id="1_qrxm6"]
+[ext_resource type="Resource" uid="uid://cr835l7btmohw" path="res://cards/metal_debug.tres" id="1_qwlla"]
+
+[resource]
+script = ExtResource("1_qrxm6")
+list = Array[Resource("res://src/metal_card.gd")]([ExtResource("1_qwlla"), ExtResource("1_qwlla")])

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cm7cs76tfg7ot"
+path="res://.godot/imported/Mission_Improbable_170bpm_120s.wav-7c606bf252344be188d6b53e35573d1e.sample"
+
+[deps]
+
+source_file="res://assets/Spy Music/Mission_Improbable_170bpm_120s.wav"
+dest_files=["res://.godot/imported/Mission_Improbable_170bpm_120s.wav-7c606bf252344be188d6b53e35573d1e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
