@@ -64,7 +64,8 @@ layout_mode = 0
 offset_top = -3.0
 offset_right = 196.0
 offset_bottom = 27.0
-text = "ARIA"
+text = "Bretta
+"
 label_settings = SubResource("LabelSettings_r0hdi")
 
 [node name="Deck" type="Label" parent="StatusMeters/Agent 1"]
