@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://badx6wcj26swh"]
+
+[ext_resource type="Texture2D" uid="uid://dk4oidnsr2ee6" path="res://assets/icon.svg" id="2_sfvk2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbcrm"]
+albedo_color = Color(0.27451, 0.27451, 0.27451, 1)
+metallic_specular = 0.1
+
+[sub_resource type="BoxMesh" id="BoxMesh_qxffp"]
+material = SubResource("StandardMaterial3D_pbcrm")
+size = Vector3(2, 0.75, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wfvmx"]
+size = Vector3(2, 0.75, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vtots"]
+material = SubResource("StandardMaterial3D_pbcrm")
+size = Vector3(2, 0.75, 2)
+
+[node name="TileLibrary" type="Node3D"]
+
+[node name="FloorTile" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_qxffp")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FloorTile"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorTile/StaticBody3D"]
+shape = SubResource("BoxShape3D_wfvmx")
+
+[node name="SpawnTile" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_vtots")
+
+[node name="Sprite3D" type="Sprite3D" parent="SpawnTile"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+billboard = 1
+texture = ExtResource("2_sfvk2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SpawnTile"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnTile/StaticBody3D"]
+shape = SubResource("BoxShape3D_wfvmx")

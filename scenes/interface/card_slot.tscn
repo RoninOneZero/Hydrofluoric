@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cimwlfl3mqh4w"]
+
+[ext_resource type="Texture2D" uid="uid://bnp07gke7avjk" path="res://assets/models/card_no_card_tex.png" id="1_s7o2f"]
+[ext_resource type="Script" path="res://scenes/interface/CardSlot.gd" id="2_t5eji"]
+
+[node name="CardSlot1" type="TextureButton"]
+offset_right = 185.0
+offset_bottom = 183.0
+scale = Vector2(0.36, 0.36)
+action_mode = 0
+texture_normal = ExtResource("1_s7o2f")
+stretch_mode = 0
+script = ExtResource("2_t5eji")
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

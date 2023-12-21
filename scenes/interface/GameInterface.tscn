@@ -1,0 +1,276 @@
+[gd_scene load_steps=12 format=3 uid="uid://f2s0ywesc3mu"]
+
+[ext_resource type="Script" path="res://scenes/interface/GameInterface.gd" id="1_6ei0q"]
+[ext_resource type="Texture2D" uid="uid://wpj8vje1hja8" path="res://assets/art/reference/interface.png" id="1_q8xjc"]
+[ext_resource type="FontFile" uid="uid://dgj3vguhfstb7" path="res://assets/fonts/Kenney Rocket Square.ttf" id="2_doxfb"]
+[ext_resource type="LabelSettings" uid="uid://qvwmks2arrnj" path="res://scenes/interface/HUD_label_settings.tres" id="3_dwv3j"]
+[ext_resource type="Texture2D" uid="uid://b3pk51xg7lr66" path="res://assets/art/honeycomb.png" id="4_f7oi0"]
+[ext_resource type="Texture2D" uid="uid://bnp07gke7avjk" path="res://assets/models/card_no_card_tex.png" id="5_k13hw"]
+[ext_resource type="Script" path="res://scenes/interface/Hand.gd" id="7_s6hs1"]
+[ext_resource type="PackedScene" uid="uid://cimwlfl3mqh4w" path="res://scenes/interface/card_slot.tscn" id="8_t6vf5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r0hdi"]
+font = ExtResource("2_doxfb")
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_nybxf"]
+font = ExtResource("2_doxfb")
+font_size = 26
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yu7v5"]
+bg_color = Color(0.996078, 0, 0.0941176, 0.352941)
+
+[node name="GameInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ei0q")
+metadata/_edit_lock_ = true
+
+[node name="Reference" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.615686)
+z_index = 99
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_q8xjc")
+metadata/_edit_lock_ = true
+
+[node name="StatusMeters" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 13.0
+offset_right = 423.0
+offset_bottom = 119.0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Agent 1" type="Control" parent="StatusMeters"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 53.0
+grow_horizontal = 2
+
+[node name="Name" type="Label" parent="StatusMeters/Agent 1"]
+layout_mode = 0
+offset_top = -3.0
+offset_right = 196.0
+offset_bottom = 27.0
+text = "ARIA"
+label_settings = SubResource("LabelSettings_r0hdi")
+
+[node name="Deck" type="Label" parent="StatusMeters/Agent 1"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "🂡 30/30"
+label_settings = SubResource("LabelSettings_nybxf")
+
+[node name="ProgressBar" type="ProgressBar" parent="StatusMeters/Agent 1"]
+layout_mode = 0
+offset_top = 33.0
+offset_right = 391.0
+offset_bottom = 60.0
+value = 100.0
+show_percentage = false
+
+[node name="Agent 2" type="Control" parent="StatusMeters"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 60.0
+offset_bottom = 113.0
+grow_horizontal = 2
+
+[node name="Name" type="Label" parent="StatusMeters/Agent 2"]
+layout_mode = 0
+offset_top = -3.0
+offset_right = 196.0
+offset_bottom = 27.0
+text = "JAKE"
+label_settings = SubResource("LabelSettings_r0hdi")
+
+[node name="Deck" type="Label" parent="StatusMeters/Agent 2"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "🂡 30/30"
+label_settings = SubResource("LabelSettings_nybxf")
+
+[node name="ProgressBar" type="ProgressBar" parent="StatusMeters/Agent 2"]
+layout_mode = 0
+offset_top = 33.0
+offset_right = 391.0
+offset_bottom = 60.0
+value = 100.0
+show_percentage = false
+
+[node name="RestIndicator" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_right = 40.0
+offset_bottom = 73.0
+grow_horizontal = 2
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="RestIndicator"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "REST
+2/2"
+label_settings = ExtResource("3_dwv3j")
+horizontal_alignment = 1
+
+[node name="AlertStatus" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -192.0
+offset_top = 73.0
+offset_right = 192.0
+offset_bottom = 113.0
+grow_horizontal = 2
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="AlertStatus"]
+layout_mode = 0
+offset_top = -4.0
+offset_right = 93.0
+offset_bottom = 26.0
+text = "ALERT"
+label_settings = ExtResource("3_dwv3j")
+
+[node name="Label2" type="Label" parent="AlertStatus"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -130.0
+offset_bottom = 36.0
+grow_horizontal = 0
+text = "15.00"
+label_settings = ExtResource("3_dwv3j")
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="AlertStatus"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_yu7v5")
+value = 100.0
+show_percentage = false
+
+[node name="EquipCells" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -301.0
+offset_bottom = 251.0
+grow_horizontal = 0
+texture = ExtResource("4_f7oi0")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="CardInfo" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 40.0
+offset_top = 150.0
+offset_right = 476.0
+offset_bottom = 673.0
+texture = ExtResource("5_k13hw")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Hand" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 73.0
+offset_top = -167.0
+offset_right = -73.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("7_s6hs1")
+metadata/_edit_group_ = true
+
+[node name="CardSlot1" parent="Hand" instance=ExtResource("8_t6vf5")]
+layout_mode = 0
+focus_neighbor_left = NodePath("../CardSlot6")
+focus_neighbor_right = NodePath("../CardSlot2")
+
+[node name="CardSlot2" parent="Hand" instance=ExtResource("8_t6vf5")]
+layout_mode = 0
+offset_left = 228.0
+offset_right = 728.0
+offset_bottom = 600.0
+focus_neighbor_left = NodePath("../CardSlot1")
+focus_neighbor_right = NodePath("../CardSlot3")
+
+[node name="CardSlot3" parent="Hand" instance=ExtResource("8_t6vf5")]
+layout_mode = 0
+offset_left = 455.0
+offset_right = 955.0
+offset_bottom = 600.0
+focus_neighbor_left = NodePath("../CardSlot2")
+focus_neighbor_right = NodePath("../CardSlot4")
+
+[node name="CardSlot4" parent="Hand" instance=ExtResource("8_t6vf5")]
+layout_mode = 0
+offset_left = 687.0
+offset_right = 1187.0
+offset_bottom = 600.0
+focus_neighbor_left = NodePath("../CardSlot3")
+focus_neighbor_right = NodePath("../CardSlot5")
+
+[node name="CardSlot5" parent="Hand" instance=ExtResource("8_t6vf5")]
+layout_mode = 0
+offset_left = 914.0
+offset_right = 1414.0
+offset_bottom = 600.0
+focus_neighbor_left = NodePath("../CardSlot4")
+focus_neighbor_right = NodePath("../CardSlot6")
+
+[node name="CardSlot6" parent="Hand" instance=ExtResource("8_t6vf5")]
+layout_mode = 0
+offset_left = 1151.0
+offset_right = 1651.0
+offset_bottom = 600.0
+focus_neighbor_left = NodePath("../CardSlot5")
+focus_neighbor_right = NodePath("../CardSlot1")
