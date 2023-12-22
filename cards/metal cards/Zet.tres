@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="MetalCardData" load_steps=3 format=3 uid="uid://d2eh8gqb74sqs"]
 
 [ext_resource type="Texture2D" uid="uid://b0xlsfi8n5361" path="res://assets/art/portraits/Zet.jpg" id="1_yimaq"]
-[ext_resource type="Script" path="res://src/metal_card.gd" id="2_ijtko"]
+[ext_resource type="Script" path="res://src/metal_card_data.gd" id="2_ijtko"]
 
 [resource]
 script = ExtResource("2_ijtko")

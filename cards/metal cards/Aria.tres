@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="MetalCardData" load_steps=3 format=3 uid="uid://dpgoiselqwcyv"]
 
 [ext_resource type="Texture2D" uid="uid://cik5ak1d66l18" path="res://assets/art/portraits/aria_resize.png" id="1_03yxi"]
-[ext_resource type="Script" path="res://src/metal_card.gd" id="2_7n447"]
+[ext_resource type="Script" path="res://src/metal_card_data.gd" id="2_7n447"]
 
 [resource]
 script = ExtResource("2_7n447")

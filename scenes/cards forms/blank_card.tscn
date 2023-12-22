@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://koj6ueif0mql"]
 
 [ext_resource type="Texture2D" uid="uid://bpfb3kel8rnoy" path="res://assets/art/card template.png" id="1_dxfrf"]
-[ext_resource type="Script" path="res://scenes/cards forms/blank_card.gd" id="2_qhqpo"]
+[ext_resource type="Script" path="res://scenes/cards forms/metal_card.gd" id="2_sqw7i"]
 [ext_resource type="Texture2D" uid="uid://fmduotbecrad" path="res://assets/art/card template_clipmask.png" id="2_yqfgg"]
 [ext_resource type="Texture2D" uid="uid://dk4oidnsr2ee6" path="res://assets/icon.svg" id="3_l6ebk"]
 [ext_resource type="FontFile" uid="uid://btyyh6k3pmif6" path="res://assets/fonts/Kenney Bold.ttf" id="4_d5btx"]
@@ -24,7 +24,7 @@ script/source = "extends Node
 [node name="BlankCard" type="Sprite2D"]
 position = Vector2(251, 300)
 texture = ExtResource("1_dxfrf")
-script = ExtResource("2_qhqpo")
+script = ExtResource("2_sqw7i")
 
 [node name="PortraitMask" type="Sprite2D" parent="."]
 clip_children = 1

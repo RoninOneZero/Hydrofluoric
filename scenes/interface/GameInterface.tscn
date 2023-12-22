@@ -207,7 +207,6 @@ expand_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="CardInfo" type="TextureRect" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 40.0
 offset_top = 150.0

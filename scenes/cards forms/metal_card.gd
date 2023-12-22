@@ -1,5 +1,5 @@
 class_name MetalCard
-extends Sprite2D
+extends Control
 
 # Components
 @onready var type_label := $TypeLabel

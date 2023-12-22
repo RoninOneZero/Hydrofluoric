@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MetalCard" load_steps=3 format=3 uid="uid://cr835l7btmohw"]
 
-[ext_resource type="Script" path="res://src/metal_card.gd" id="1_cfh47"]
+[ext_resource type="Script" path="res://src/metal_card_data.gd" id="1_cfh47"]
 [ext_resource type="Texture2D" uid="uid://dk4oidnsr2ee6" path="res://assets/icon.svg" id="1_ysgbd"]
 
 [resource]
