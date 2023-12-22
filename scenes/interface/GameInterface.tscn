@@ -1,13 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://f2s0ywesc3mu"]
+[gd_scene load_steps=14 format=3 uid="uid://f2s0ywesc3mu"]
 
 [ext_resource type="Script" path="res://scenes/interface/GameInterface.gd" id="1_6ei0q"]
 [ext_resource type="Texture2D" uid="uid://wpj8vje1hja8" path="res://assets/art/reference/interface.png" id="1_q8xjc"]
 [ext_resource type="FontFile" uid="uid://dgj3vguhfstb7" path="res://assets/fonts/Kenney Rocket Square.ttf" id="2_doxfb"]
+[ext_resource type="Resource" uid="uid://d3vw4b0lley4t" path="res://metal decks/sample_deck.tres" id="2_xujum"]
 [ext_resource type="LabelSettings" uid="uid://qvwmks2arrnj" path="res://scenes/interface/HUD_label_settings.tres" id="3_dwv3j"]
 [ext_resource type="Texture2D" uid="uid://b3pk51xg7lr66" path="res://assets/art/honeycomb.png" id="4_f7oi0"]
 [ext_resource type="Texture2D" uid="uid://bnp07gke7avjk" path="res://assets/models/card_no_card_tex.png" id="5_k13hw"]
 [ext_resource type="Script" path="res://scenes/interface/Hand.gd" id="7_s6hs1"]
 [ext_resource type="PackedScene" uid="uid://cimwlfl3mqh4w" path="res://scenes/interface/card_slot.tscn" id="8_t6vf5"]
+[ext_resource type="PackedScene" uid="uid://ba28b37b0txm2" path="res://scenes/experiments/metal card/metal_card.tscn" id="9_kmk08"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_r0hdi"]
 font = ExtResource("2_doxfb")
@@ -28,6 +30,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6ei0q")
+deck = ExtResource("2_xujum")
 metadata/_edit_lock_ = true
 
 [node name="Reference" type="TextureRect" parent="."]
@@ -88,6 +91,7 @@ value = 100.0
 show_percentage = false
 
 [node name="Agent 2" type="Control" parent="StatusMeters"]
+visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -195,6 +199,7 @@ value = 100.0
 show_percentage = false
 
 [node name="EquipCells" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -207,6 +212,7 @@ expand_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="CardInfo" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 40.0
 offset_top = 150.0
@@ -222,20 +228,22 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 73.0
+offset_left = 146.0
 offset_top = -167.0
-offset_right = -73.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("7_s6hs1")
+card_template = ExtResource("9_kmk08")
 metadata/_edit_group_ = true
 
 [node name="CardSlot1" parent="Hand" instance=ExtResource("8_t6vf5")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 focus_neighbor_left = NodePath("../CardSlot6")
 focus_neighbor_right = NodePath("../CardSlot2")
 
 [node name="CardSlot2" parent="Hand" instance=ExtResource("8_t6vf5")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 228.0
 offset_right = 728.0
@@ -244,6 +252,7 @@ focus_neighbor_left = NodePath("../CardSlot1")
 focus_neighbor_right = NodePath("../CardSlot3")
 
 [node name="CardSlot3" parent="Hand" instance=ExtResource("8_t6vf5")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 455.0
 offset_right = 955.0
@@ -252,6 +261,7 @@ focus_neighbor_left = NodePath("../CardSlot2")
 focus_neighbor_right = NodePath("../CardSlot4")
 
 [node name="CardSlot4" parent="Hand" instance=ExtResource("8_t6vf5")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 687.0
 offset_right = 1187.0
@@ -260,6 +270,7 @@ focus_neighbor_left = NodePath("../CardSlot3")
 focus_neighbor_right = NodePath("../CardSlot5")
 
 [node name="CardSlot5" parent="Hand" instance=ExtResource("8_t6vf5")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 914.0
 offset_right = 1414.0
@@ -268,6 +279,7 @@ focus_neighbor_left = NodePath("../CardSlot4")
 focus_neighbor_right = NodePath("../CardSlot6")
 
 [node name="CardSlot6" parent="Hand" instance=ExtResource("8_t6vf5")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 1151.0
 offset_right = 1651.0

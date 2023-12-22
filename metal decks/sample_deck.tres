@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MetalDeck" load_steps=6 format=3 uid="uid://d3vw4b0lley4t"]
+
+[ext_resource type="Resource" uid="uid://dpgoiselqwcyv" path="res://cards/metal cards/Aria.tres" id="1_21rbs"]
+[ext_resource type="Resource" uid="uid://d2eh8gqb74sqs" path="res://cards/metal cards/Zet.tres" id="2_krhov"]
+[ext_resource type="Resource" uid="uid://hnbcdyknleyx" path="res://cards/metal cards/Feeb.tres" id="3_gggu1"]
+[ext_resource type="Resource" uid="uid://bwske328t1puo" path="res://cards/metal cards/Piilsud.tres" id="4_00cpl"]
+[ext_resource type="Script" path="res://src/metal_deck.gd" id="5_wea3j"]
+
+[resource]
+script = ExtResource("5_wea3j")
+list = Array[Resource("res://src/metal_card_data.gd")]([ExtResource("1_21rbs"), ExtResource("1_21rbs"), ExtResource("2_krhov"), ExtResource("2_krhov"), ExtResource("3_gggu1"), ExtResource("3_gggu1"), ExtResource("4_00cpl"), ExtResource("4_00cpl"), ExtResource("1_21rbs"), ExtResource("3_gggu1"), ExtResource("4_00cpl"), ExtResource("2_krhov")])
