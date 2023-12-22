@@ -16,13 +16,9 @@ extends Resource
 
 # Meta / Deckbuilding stats
 ## The in-system card identifier. Set externally by the card catalogue
-var card_id: int = -1
+var card_ID: int = -1
 ## Liklihood of the card appearing in booster packs.
 @export_range(1, 5) var rarity: int  = 1
 ## How many of the card that is allowed in a deck list.
 @export_range(1, 4) var limit: int = 4
 
-## DEBUG Generates a node instance with this card's statistics for use in play.
-func create_card_instance() -> Node:
-	var sample := Node.new()
-	return sample
