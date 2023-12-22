@@ -1,4 +1,4 @@
-class_name BlankCard
+class_name MetalCard
 extends Sprite2D
 
 # Components
@@ -8,7 +8,6 @@ extends Sprite2D
 @onready var cost_label := $CostLabel
 @onready var portrait_sprite := $PortraitMask/Portrait
 
-
 # Card stats
 var type: String 
 #var name
@@ -16,6 +15,7 @@ var info: String
 var cost: int 
 var portrait: Texture 
 
+# Catalogue stats
 var card_ID: int
 var rarity: int
 var limit: int
@@ -25,7 +25,7 @@ func _ready() -> void:
 	update_card()
 
 ## Populate blank card with information.
-func inscribe_card(new_data: MetalCard) -> void:
+func inscribe_card(new_data: MetalCardData) -> void:
 	type = new_data.type
 	name = new_data.name 
 	info = new_data.info
@@ -44,5 +44,4 @@ func update_card() -> void:
 
 func _on_renamed() -> void:
 	name_label.text = name
-	print("My name is " + name)
 

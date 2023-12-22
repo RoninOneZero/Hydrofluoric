@@ -2,7 +2,7 @@ class_name MetalDeck
 extends Resource
 
 # The abstract list of cards that were used to construct the deck
-@export var list: Array[MetalCard] = []
+@export var list: Array[MetalCardData] = []
 
 # The cards as a physical stack of cards that can be drawn from and shuffled
 var pile: Array

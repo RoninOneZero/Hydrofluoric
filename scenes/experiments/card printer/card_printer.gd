@@ -1,14 +1,20 @@
 extends Node2D
 
 @export var blank_card: PackedScene
-@export var card_data: MetalCard
+@export var card_data: MetalCardData = MetalCardData.new()
 
 func _ready() -> void:
-	if blank_card and card_data:
-		$Marker2D.add_child(instance_card(card_data))
+	if blank_card:
+		display_card(card_data)
+	else:
+		print("Card form or data not found.")
 
 
-func instance_card(data: MetalCard) -> Node:
-	var card: BlankCard = blank_card.instantiate()
+func display_card(data: MetalCardData) -> void:
+	var marker = $Marker2D
+	marker.add_child(instance_card(data))
+
+func instance_card(data: MetalCardData) -> Node:
+	var card: MetalCard = blank_card.instantiate()
 	card.inscribe_card(data)
 	return card

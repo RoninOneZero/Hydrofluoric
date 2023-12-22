@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MetalCardData" load_steps=3 format=3 uid="uid://dbeakfw1nuk02"]
+
+[ext_resource type="Texture2D" uid="uid://dk4oidnsr2ee6" path="res://assets/icon.svg" id="1_qprtt"]
+[ext_resource type="Script" path="res://src/metal_card.gd" id="2_3n6ow"]
+
+[resource]
+script = ExtResource("2_3n6ow")
+type = "Item"
+name = "Blank"
+info = " This card has no function."
+cost = 4
+portrait = ExtResource("1_qprtt")
+rarity = 1
+limit = 4

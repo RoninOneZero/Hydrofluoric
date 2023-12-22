@@ -1,4 +1,4 @@
-class_name MetalCard
+class_name MetalCardData
 extends Resource
 
 
