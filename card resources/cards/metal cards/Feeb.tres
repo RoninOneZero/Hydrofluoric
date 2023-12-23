@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MetalCardData" load_steps=3 format=3 uid="uid://bf71g3v7xr5ba"]
+
+[ext_resource type="Texture2D" uid="uid://bef7u5g7lwbg6" path="res://assets/art/portraits/demon thibng.png" id="1_o75oj"]
+[ext_resource type="Script" path="res://src/resources/metal_card_data.gd" id="2_y8obi"]
+
+[resource]
+script = ExtResource("2_y8obi")
+type = "Character"
+name = "Feeb"
+info = "It's a suppository."
+cost = 4
+portrait = ExtResource("1_o75oj")
+rarity = 1
+limit = 4

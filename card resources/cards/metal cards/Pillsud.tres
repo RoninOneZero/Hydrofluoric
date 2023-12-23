@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MetalCardData" load_steps=3 format=3 uid="uid://bn4ahjettrbrq"]
+
+[ext_resource type="Texture2D" uid="uid://dxas46ywe2xky" path="res://assets/art/portraits/plorb.jpg" id="1_e4mpb"]
+[ext_resource type="Script" path="res://src/resources/metal_card_data.gd" id="2_br3xo"]
+
+[resource]
+script = ExtResource("2_br3xo")
+type = "Character"
+name = "Piilsud"
+info = "[Furry Artist]
+Exudes pilk"
+cost = 5
+portrait = ExtResource("1_e4mpb")
+rarity = 1
+limit = 4

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardCatalogue" load_steps=7 format=3 uid="uid://c435idm6d5jnv"]
+
+[ext_resource type="PackedScene" uid="uid://ba28b37b0txm2" path="res://scenes/cards forms/metal card/metal_card.tscn" id="1_cxprx"]
+[ext_resource type="Resource" uid="uid://be5smnqusaila" path="res://card resources/cards/metal cards/Aria.tres" id="1_qssr7"]
+[ext_resource type="Script" path="res://src/resources/card_catalogue.gd" id="1_vvlp2"]
+[ext_resource type="Resource" uid="uid://bf71g3v7xr5ba" path="res://card resources/cards/metal cards/Feeb.tres" id="2_lnpmb"]
+[ext_resource type="Resource" uid="uid://bn4ahjettrbrq" path="res://card resources/cards/metal cards/Pillsud.tres" id="3_3lank"]
+[ext_resource type="Resource" uid="uid://b4hdqkequho36" path="res://card resources/cards/metal cards/Zet.tres" id="4_7seiy"]
+
+[resource]
+script = ExtResource("1_vvlp2")
+card_list = Array[Resource("res://src/resources/metal_card_data.gd")]([ExtResource("1_qssr7"), ExtResource("2_lnpmb"), ExtResource("3_3lank"), ExtResource("4_7seiy")])
+card_template = ExtResource("1_cxprx")

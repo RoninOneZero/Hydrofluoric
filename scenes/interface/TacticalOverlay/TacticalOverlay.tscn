@@ -1,33 +1,34 @@
 [gd_scene load_steps=12 format=3 uid="uid://f2s0ywesc3mu"]
 
-[ext_resource type="Script" path="res://scenes/interface/GameInterface.gd" id="1_6ei0q"]
-[ext_resource type="Texture2D" uid="uid://wpj8vje1hja8" path="res://assets/art/reference/interface.png" id="1_q8xjc"]
-[ext_resource type="FontFile" uid="uid://dgj3vguhfstb7" path="res://assets/fonts/Kenney Rocket Square.ttf" id="2_doxfb"]
-[ext_resource type="LabelSettings" uid="uid://qvwmks2arrnj" path="res://scenes/interface/HUD_label_settings.tres" id="3_dwv3j"]
-[ext_resource type="Texture2D" uid="uid://b3pk51xg7lr66" path="res://assets/art/honeycomb.png" id="4_f7oi0"]
-[ext_resource type="Texture2D" uid="uid://bnp07gke7avjk" path="res://assets/models/card_no_card_tex.png" id="5_k13hw"]
-[ext_resource type="Script" path="res://scenes/interface/Hand.gd" id="7_s6hs1"]
-[ext_resource type="PackedScene" uid="uid://cimwlfl3mqh4w" path="res://scenes/interface/card_slot.tscn" id="8_t6vf5"]
+[ext_resource type="Script" path="res://scenes/interface/TacticalOverlay/TacticalOverlay.gd" id="1_pj0hg"]
+[ext_resource type="Resource" uid="uid://dyj58j6ke7he3" path="res://card resources/decks/sample_deck.tres" id="2_fj02d"]
+[ext_resource type="Texture2D" uid="uid://wpj8vje1hja8" path="res://assets/art/reference/interface.png" id="3_0ctv2"]
+[ext_resource type="FontFile" uid="uid://dgj3vguhfstb7" path="res://assets/fonts/Kenney Rocket Square.ttf" id="4_5d1ym"]
+[ext_resource type="LabelSettings" uid="uid://qvwmks2arrnj" path="res://scenes/interface/HUD_label_settings.tres" id="5_va6h6"]
+[ext_resource type="Texture2D" uid="uid://b3pk51xg7lr66" path="res://assets/art/honeycomb.png" id="6_i0x1w"]
+[ext_resource type="Texture2D" uid="uid://bnp07gke7avjk" path="res://assets/models/card_no_card_tex.png" id="7_730yy"]
+[ext_resource type="Script" path="res://scenes/interface/TacticalOverlay/Hand.gd" id="8_fdb0f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_r0hdi"]
-font = ExtResource("2_doxfb")
+font = ExtResource("4_5d1ym")
 font_size = 26
 
 [sub_resource type="LabelSettings" id="LabelSettings_nybxf"]
-font = ExtResource("2_doxfb")
+font = ExtResource("4_5d1ym")
 font_size = 26
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yu7v5"]
 bg_color = Color(0.996078, 0, 0.0941176, 0.352941)
 
-[node name="GameInterface" type="Control"]
+[node name="TacticalOverlay" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_6ei0q")
+script = ExtResource("1_pj0hg")
+deck = ExtResource("2_fj02d")
 metadata/_edit_lock_ = true
 
 [node name="Reference" type="TextureRect" parent="."]
@@ -40,7 +41,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_q8xjc")
+texture = ExtResource("3_0ctv2")
 metadata/_edit_lock_ = true
 
 [node name="StatusMeters" type="Control" parent="."]
@@ -88,6 +89,7 @@ value = 100.0
 show_percentage = false
 
 [node name="Agent 2" type="Control" parent="StatusMeters"]
+visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -143,7 +145,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "REST
 2/2"
-label_settings = ExtResource("3_dwv3j")
+label_settings = ExtResource("5_va6h6")
 horizontal_alignment = 1
 
 [node name="AlertStatus" type="Control" parent="."]
@@ -166,7 +168,7 @@ offset_top = -4.0
 offset_right = 93.0
 offset_bottom = 26.0
 text = "ALERT"
-label_settings = ExtResource("3_dwv3j")
+label_settings = ExtResource("5_va6h6")
 
 [node name="Label2" type="Label" parent="AlertStatus"]
 layout_mode = 1
@@ -177,7 +179,7 @@ offset_left = -130.0
 offset_bottom = 36.0
 grow_horizontal = 0
 text = "15.00"
-label_settings = ExtResource("3_dwv3j")
+label_settings = ExtResource("5_va6h6")
 horizontal_alignment = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="AlertStatus"]
@@ -195,6 +197,7 @@ value = 100.0
 show_percentage = false
 
 [node name="EquipCells" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -202,7 +205,7 @@ anchor_right = 1.0
 offset_left = -301.0
 offset_bottom = 251.0
 grow_horizontal = 0
-texture = ExtResource("4_f7oi0")
+texture = ExtResource("6_i0x1w")
 expand_mode = 1
 metadata/_edit_lock_ = true
 
@@ -213,7 +216,7 @@ offset_left = 40.0
 offset_top = 150.0
 offset_right = 476.0
 offset_bottom = 673.0
-texture = ExtResource("5_k13hw")
+texture = ExtResource("7_730yy")
 expand_mode = 1
 metadata/_edit_lock_ = true
 
@@ -223,55 +226,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 73.0
 offset_top = -167.0
-offset_right = -73.0
 grow_horizontal = 2
 grow_vertical = 0
-script = ExtResource("7_s6hs1")
+script = ExtResource("8_fdb0f")
 metadata/_edit_group_ = true
-
-[node name="CardSlot1" parent="Hand" instance=ExtResource("8_t6vf5")]
-layout_mode = 0
-focus_neighbor_left = NodePath("../CardSlot6")
-focus_neighbor_right = NodePath("../CardSlot2")
-
-[node name="CardSlot2" parent="Hand" instance=ExtResource("8_t6vf5")]
-layout_mode = 0
-offset_left = 228.0
-offset_right = 728.0
-offset_bottom = 600.0
-focus_neighbor_left = NodePath("../CardSlot1")
-focus_neighbor_right = NodePath("../CardSlot3")
-
-[node name="CardSlot3" parent="Hand" instance=ExtResource("8_t6vf5")]
-layout_mode = 0
-offset_left = 455.0
-offset_right = 955.0
-offset_bottom = 600.0
-focus_neighbor_left = NodePath("../CardSlot2")
-focus_neighbor_right = NodePath("../CardSlot4")
-
-[node name="CardSlot4" parent="Hand" instance=ExtResource("8_t6vf5")]
-layout_mode = 0
-offset_left = 687.0
-offset_right = 1187.0
-offset_bottom = 600.0
-focus_neighbor_left = NodePath("../CardSlot3")
-focus_neighbor_right = NodePath("../CardSlot5")
-
-[node name="CardSlot5" parent="Hand" instance=ExtResource("8_t6vf5")]
-layout_mode = 0
-offset_left = 914.0
-offset_right = 1414.0
-offset_bottom = 600.0
-focus_neighbor_left = NodePath("../CardSlot4")
-focus_neighbor_right = NodePath("../CardSlot6")
-
-[node name="CardSlot6" parent="Hand" instance=ExtResource("8_t6vf5")]
-layout_mode = 0
-offset_left = 1151.0
-offset_right = 1651.0
-offset_bottom = 600.0
-focus_neighbor_left = NodePath("../CardSlot5")
-focus_neighbor_right = NodePath("../CardSlot1")
