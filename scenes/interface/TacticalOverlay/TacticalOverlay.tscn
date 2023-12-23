@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://f2s0ywesc3mu"]
+[gd_scene load_steps=12 format=3 uid="uid://f2s0ywesc3mu"]
 
 [ext_resource type="Script" path="res://scenes/interface/TacticalOverlay/TacticalOverlay.gd" id="1_pj0hg"]
 [ext_resource type="Resource" uid="uid://dyj58j6ke7he3" path="res://card resources/decks/sample_deck.tres" id="2_fj02d"]
@@ -7,6 +7,7 @@
 [ext_resource type="LabelSettings" uid="uid://qvwmks2arrnj" path="res://scenes/interface/HUD_label_settings.tres" id="5_va6h6"]
 [ext_resource type="Texture2D" uid="uid://b3pk51xg7lr66" path="res://assets/art/honeycomb.png" id="6_i0x1w"]
 [ext_resource type="Texture2D" uid="uid://bnp07gke7avjk" path="res://assets/models/card_no_card_tex.png" id="7_730yy"]
+[ext_resource type="Script" path="res://scenes/interface/TacticalOverlay/Hand.gd" id="8_fdb0f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_r0hdi"]
 font = ExtResource("4_5d1ym")
@@ -225,8 +226,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 146.0
 offset_top = -167.0
 grow_horizontal = 2
 grow_vertical = 0
+script = ExtResource("8_fdb0f")
 metadata/_edit_group_ = true

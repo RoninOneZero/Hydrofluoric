@@ -13,12 +13,12 @@ var list_size: int : get = _get_list_size
 
 
 ## The cards as a physical stack of cards that can be drawn from and shuffled
-var pile: Array
+var pile: Array : set = set_pile
 var size: int : get = _get_size
 
 signal shuffled
 signal card_drawn
-signal deck_emptied
+signal deck_emptied # Possibly redundant
 
 ## Generate a new unshuffled pile from deck list for use in game
 func create_pile() -> void:
@@ -66,3 +66,6 @@ func _get_list_size() -> int:
 
 func _get_size() -> int:
 	return pile.size()
+
+func set_pile(value: Array) -> void:
+	pile = value

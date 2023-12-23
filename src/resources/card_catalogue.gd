@@ -19,3 +19,5 @@ func _get_data(ID: int) -> MetalCardData:
 ## Return ID number of given data, or -1 if no data is found.
 func get_ID(data: MetalCardData) -> int:
 	return card_list.find(data)
+
+#TODO use count() to find duplicates
