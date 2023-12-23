@@ -1,9 +1,16 @@
 class_name MetalDeck
 extends Resource
 
-## The abstract list of cards that were used to construct the deck
-@export var list: Array[MetalCardData] = []
+## User given name for deck.
+@export var name: String = "My Deck"
+
+## The catalogue from which the deck was created.
+@export var catalogue: CardCatalogue
+
+## List of CardID's that create the deck.
+@export var list: Array[int] = []
 var list_size: int : get = _get_list_size
+
 
 ## The cards as a physical stack of cards that can be drawn from and shuffled
 var pile: Array
@@ -13,12 +20,11 @@ signal shuffled
 signal card_drawn
 signal deck_emptied
 
-
 ## Generate a new unshuffled pile from deck list for use in game
 func create_pile() -> void:
-    # Needs a function that creates new instances of the cards
-    # Note that duplicate does not make copies of the cards no matter what
-	pile = list.duplicate()
+	for index in list:
+		pile.append(catalogue.get_card(index))
+
 
 
 ## Remove and return a card from the top of the pile. Recommend use of draw() instead.
@@ -51,6 +57,9 @@ func shuffle() -> void:
 
 	pile.shuffle()
 	emit_signal("shuffled")
+
+func is_empty() -> bool:
+	return pile.is_empty()
 
 func _get_list_size() -> int:
 	return list.size()

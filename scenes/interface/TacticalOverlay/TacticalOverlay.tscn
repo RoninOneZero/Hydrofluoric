@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://f2s0ywesc3mu"]
 
 [ext_resource type="Script" path="res://scenes/interface/TacticalOverlay/TacticalOverlay.gd" id="1_pj0hg"]
-[ext_resource type="Resource" uid="uid://c435idm6d5jnv" path="res://card resources/catalogues/alpha_catalogue.tres" id="2_ykqdk"]
+[ext_resource type="Resource" uid="uid://dyj58j6ke7he3" path="res://card resources/decks/sample_deck.tres" id="2_fj02d"]
 [ext_resource type="Texture2D" uid="uid://wpj8vje1hja8" path="res://assets/art/reference/interface.png" id="3_0ctv2"]
 [ext_resource type="FontFile" uid="uid://dgj3vguhfstb7" path="res://assets/fonts/Kenney Rocket Square.ttf" id="4_5d1ym"]
 [ext_resource type="LabelSettings" uid="uid://qvwmks2arrnj" path="res://scenes/interface/HUD_label_settings.tres" id="5_va6h6"]
@@ -27,7 +27,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pj0hg")
-catalogue = ExtResource("2_ykqdk")
+deck = ExtResource("2_fj02d")
 metadata/_edit_lock_ = true
 
 [node name="Reference" type="TextureRect" parent="."]

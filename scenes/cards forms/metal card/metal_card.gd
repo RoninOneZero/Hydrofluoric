@@ -10,7 +10,7 @@ extends Control
 
 # Card stats
 var type: String 
-#var name
+var card_name: String
 var info: String 
 var cost: int 
 var portrait: Texture 
@@ -27,7 +27,7 @@ func _ready() -> void:
 ## Populate blank card with information.
 func inscribe_card(new_data: MetalCardData) -> void:
 	type = new_data.type
-	name = new_data.name 
+	card_name = new_data.name 
 	info = new_data.info
 	cost = new_data.cost
 	portrait = new_data.portrait
@@ -37,11 +37,8 @@ func inscribe_card(new_data: MetalCardData) -> void:
 
 func update_card() -> void:
 	type_label.text = type
-	name_label.text = name
+	name_label.text = card_name
 	info_label.text = info
 	cost_label.text = str(cost)
 	portrait_sprite.texture = portrait
-
-func _on_renamed() -> void:
-	name_label.text = name
 

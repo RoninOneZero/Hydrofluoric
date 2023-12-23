@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MetalCardData" load_steps=3 format=3 uid="uid://b4hdqkequho36"]
+
+[ext_resource type="Texture2D" uid="uid://b0xlsfi8n5361" path="res://assets/art/portraits/Zet.jpg" id="1_m0gur"]
+[ext_resource type="Script" path="res://src/resources/metal_card_data.gd" id="2_h8viu"]
+
+[resource]
+script = ExtResource("2_h8viu")
+type = "Character"
+name = "Zet"
+info = "[Arc Warden]
+Literally 2 lads."
+cost = 12
+portrait = ExtResource("1_m0gur")
+rarity = 1
+limit = 4

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MetalCardData" load_steps=3 format=3 uid="uid://be5smnqusaila"]
+
+[ext_resource type="Texture2D" uid="uid://cik5ak1d66l18" path="res://assets/art/portraits/aria_resize.png" id="1_dicu6"]
+[ext_resource type="Script" path="res://src/resources/metal_card_data.gd" id="2_gbiwh"]
+
+[resource]
+script = ExtResource("2_gbiwh")
+type = "Character"
+name = "Aria"
+info = "[Advanced Interrogation]
+Activate CQC ->
+	Reveal location of an item on the current level."
+cost = 8
+portrait = ExtResource("1_dicu6")
+rarity = 1
+limit = 4
