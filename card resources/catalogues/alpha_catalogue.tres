@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CardCatalogue" load_steps=3 format=3 uid="uid://c435idm6d5jnv"]
+
+[ext_resource type="PackedScene" uid="uid://ba28b37b0txm2" path="res://scenes/cards forms/metal card/metal_card.tscn" id="1_cxprx"]
+[ext_resource type="Script" path="res://src/resources/card_catalogue.gd" id="1_vvlp2"]
+
+[resource]
+script = ExtResource("1_vvlp2")
+card_list = Array[Resource("res://src/resources/metal_card_data.gd")]([])
+card_template = ExtResource("1_cxprx")
