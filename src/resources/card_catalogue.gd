@@ -7,9 +7,14 @@ extends Resource
 ## The packed scene to be used as a template
 @export var card_template: PackedScene
 
+func _init() -> void:
+	## Assign ID's
+	for card in card_list:
+		card.card_ID = card_list.find(card)
+
 ##Returns a card object for use in play given an ID. Returns null if ID not found.
 func get_card(ID: int) -> MetalCard:
-	var target = _get_data(ID)    
+	var target: MetalCardData = _get_data(ID)
 	return CardPrinter.instance_card(card_template, target)
 
 ## Return data at given ID number. Not meant to be used externally.

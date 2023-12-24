@@ -15,20 +15,18 @@ func add_card(card: MetalCard) -> void:
 	contents.append(card)
 	add_child(card)
 	# Minify card
-	card.scale *= 0.35
+	card.scale = Vector2(0.35, 0.35)
 	_resize_hand()
 
-## Remove a card from hand. Assumes card is in hand.
-func remove_card(index: int) -> void:
+## Returns the card at given index and removes it from hand.
+func take_card(index: int) -> MetalCard:
 	if contents.size() - 1 < 0:
 		return
 	var orphan = contents[index]
 	contents.remove_at(index)
-	orphan.queue_free()
 	_resize_hand()
-
-	
-
+	remove_child(orphan)
+	return orphan
 
 
 ## Adjusts visuals to show all cards in hand
