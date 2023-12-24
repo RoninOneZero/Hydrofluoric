@@ -8,31 +8,60 @@ const HANDSIZE := 6
 @onready var hand: MetalHand = $Hand
 @onready var deck_status: Label = get_node("StatusMeters/Agent 1/Deck")
 
+#TODO add a cards in hand status label
+
+var graveyard: Array[MetalCard] = []
+
 func _ready() -> void:
-	initialize_deck(deck)
 	hand.limit = HANDSIZE
+	initialize_deck(deck)
 
 	
-
+# All this fucking sucks
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
-		if deck.is_empty():
-			return
-		
-		if !hand.is_full():
-			var stack = deck.draw(2)
-			update_deck_status()
-			for card in stack:
-				hand.add_card(card)				
-
-		else:
-			print("Hand is full")
-	
+		draw_from_deck(1)
+	# create a discard function that returns card to its original state.
 	if event.is_action_pressed("ui_cancel"):
-		hand.remove_card(0)
+		discard_from_hand(0)
 	
 
-# Might need a combined function for drawing and updating.
+## Draw a single card from the deck. Does nothing if hand is full
+func draw_from_deck(amount: int = 1, target_deck: MetalDeck = deck, target_hand: MetalHand = hand) -> void:
+	# Reduce amount to remaining slots in hand.
+	var open_hand_slots: int = target_hand.limit - target_hand.contents.size()
+	if amount > open_hand_slots:
+		amount = open_hand_slots
+
+	# Check if a card needs to be drawn.
+	for i in amount:
+		# If hand is full, halt operation.
+		if target_hand.is_full():
+			return
+		# Operation is valid, so we check if deck needs reloading, then draw card.
+		if target_deck.is_empty():
+			reload_deck()
+		target_hand.add_card(deck.draw())
+	# Since we modified the deck, update the status label.
+	update_deck_status()
+
+## Shuffles graveyard into deck.
+func reload_deck(target_deck := deck, target_grave := graveyard) -> void:
+	target_deck.pile.append_array(target_grave)
+	target_grave.clear()
+	target_deck.shuffle()
+	update_deck_status()
+
+## Discard a card from hand at given index.
+func discard_from_hand(index: int, target_hand := hand, target_grave := graveyard) -> void:
+	var card: MetalCard
+	card = target_hand.take_card(index)
+	if card == null: # If card does not exist, abort.
+		return 
+	target_grave.append(card)
+
+
+## Sets deck display. TODO needs specification of which deck
 func update_deck_status() -> void:
 	deck_status.text = "🂡 %02d/%02d" % [deck.size, deck.list_size]
 
