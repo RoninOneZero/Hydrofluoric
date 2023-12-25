@@ -13,6 +13,8 @@ extends Resource
 @export_range(0, 99) var cost: int = 4
 ## Texture to be displayed as the card's art. TODO requirements
 @export var portrait: Texture = preload("res://assets/icon.svg")
+## Movement value of the card. Most cards will be 3, very few will be more.
+@export var movement: int = 3
 
 # Meta / Deckbuilding stats
 ## The in-system card identifier. Set externally by the card catalogue
