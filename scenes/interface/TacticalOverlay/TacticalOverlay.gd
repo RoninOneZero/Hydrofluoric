@@ -3,6 +3,9 @@ extends Control
 
 const HANDSIZE := 6
 
+@export var agent: Node3D
+@export var gridmap: GridMap
+
 @export var deck: MetalDeck
 @onready var catalogue:CardCatalogue = deck.catalogue
 
@@ -13,9 +16,12 @@ const HANDSIZE := 6
 
 var graveyard: Array[MetalCard] = []
 
+signal movement_order
+
 func _ready() -> void:
 	hand.limit = HANDSIZE
 	initialize_deck(deck)
+	hand.connect("card_played", on_card_played)
 
 	
 # All this fucking sucks
@@ -25,7 +31,16 @@ func _input(event: InputEvent) -> void:
 	# create a discard function that returns card to its original state.
 	if event.is_action_pressed("ui_cancel"):
 		discard_from_hand(0)
-	
+
+# For now this only does movement
+## Resolves the effect or movement of a card. Also Messy
+func on_card_played(index: int, arg) -> void:
+	discard_from_hand(index)
+	var movement: int = arg
+	# talk to gridmap about what tile this movement can reach
+	# send destination tile to Agent
+
+
 
 ## Draw a single card from the deck. Does nothing if hand is full
 func draw_from_deck(amount: int = 1, target_deck: MetalDeck = deck, target_hand: MetalHand = hand) -> void:
@@ -80,7 +95,7 @@ func connect_deck_signals(new_deck: MetalDeck) -> void:
 	new_deck.connect("card_drawn", on_card_drawn)
 	new_deck.connect("deck_emptied", on_deck_emptied) # Possibly unneeded 
 
-# Returns an unmodfied copy of a given card. Messy function
+## Returns an unmodfied copy of a given card. Messy function
 func restore_card(card: MetalCard) -> MetalCard:
 	return catalogue.get_card(card.card_ID)
 

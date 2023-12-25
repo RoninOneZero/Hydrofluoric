@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://f2s0ywesc3mu"]
+[gd_scene load_steps=13 format=3 uid="uid://f2s0ywesc3mu"]
 
 [ext_resource type="Script" path="res://scenes/interface/TacticalOverlay/TacticalOverlay.gd" id="1_pj0hg"]
 [ext_resource type="Resource" uid="uid://dyj58j6ke7he3" path="res://card resources/decks/sample_deck.tres" id="2_fj02d"]
@@ -19,6 +19,10 @@ font_size = 26
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yu7v5"]
 bg_color = Color(0.996078, 0, 0.0941176, 0.352941)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m47ie"]
+font = ExtResource("4_5d1ym")
+font_size = 64
 
 [node name="TacticalOverlay" type="Control"]
 layout_mode = 3
@@ -239,3 +243,26 @@ offset_left = -999.0
 offset_top = -999.0
 offset_right = -999.0
 offset_bottom = -999.0
+
+[node name="NOTE" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="NOTE"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 210.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LINK GRIDMAP AND AGENT TO THIS OVERLAY.
+USE NAVMESH AND FINISH on_card_played()."
+label_settings = SubResource("LabelSettings_m47ie")
+autowrap_mode = 2
