@@ -4,6 +4,7 @@ extends Control
 const HANDSIZE := 6
 
 @export var deck: MetalDeck
+@onready var catalogue:CardCatalogue = deck.catalogue
 
 @onready var hand: MetalHand = $Hand
 @onready var deck_status: Label = get_node("StatusMeters/Agent 1/Deck")
@@ -58,7 +59,8 @@ func discard_from_hand(index: int, target_hand := hand, target_grave := graveyar
 	card = target_hand.take_card(index)
 	if card == null: # If card does not exist, abort.
 		return 
-	target_grave.append(card)
+	target_grave.append(restore_card(card))
+	card.queue_free()
 
 
 ## Sets deck display. TODO needs specification of which deck
@@ -78,7 +80,11 @@ func connect_deck_signals(new_deck: MetalDeck) -> void:
 	new_deck.connect("card_drawn", on_card_drawn)
 	new_deck.connect("deck_emptied", on_deck_emptied) # Possibly unneeded 
 
+# Returns an unmodfied copy of a given card. Messy function
+func restore_card(card: MetalCard) -> MetalCard:
+	return catalogue.get_card(card.card_ID)
 
+# Signals
 func on_shuffled() -> void:
 	print("Deck has been shuffled.")
 

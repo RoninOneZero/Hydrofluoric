@@ -20,7 +20,7 @@ script/source = "extends Node
 ### Card resolution is around 48 x 62 units
 ### ▞  <- this symbol is rad
 ### ◤◢◤◢◤◢◤◢ so are these
-### 
+### ░░░
 "
 
 [node name="MetalCard" type="Control" groups=["cards"]]
