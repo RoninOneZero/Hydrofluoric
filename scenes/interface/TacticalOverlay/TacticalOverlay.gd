@@ -68,6 +68,7 @@ func reload_deck(target_deck := deck, target_grave := graveyard) -> void:
 	target_deck.shuffle()
 	update_deck_status()
 
+#TODO Graveyard is populated with incorrect copies.
 ## Discard a card from hand at given index.
 func discard_from_hand(index: int, target_hand := hand, target_grave := graveyard) -> void:
 	var card: MetalCard
