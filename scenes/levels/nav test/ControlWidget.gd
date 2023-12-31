@@ -6,7 +6,7 @@ var valid_points: PackedVector3Array = []
 
 signal location_selected
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if valid_points.is_empty():
 		return
 	# Process directional movement

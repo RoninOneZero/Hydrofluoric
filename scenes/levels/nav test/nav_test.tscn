@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://dq2tovm0ksso5"]
+[gd_scene load_steps=12 format=3 uid="uid://dq2tovm0ksso5"]
 
+[ext_resource type="Script" path="res://scenes/levels/nav test/ControlTest.gd" id="1_53ora"]
 [ext_resource type="PackedScene" uid="uid://dbrl5rucni4l5" path="res://agents/agent.tscn" id="1_tdsyt"]
 [ext_resource type="Script" path="res://scenes/levels/nav test/Navigation.gd" id="1_wylj0"]
 [ext_resource type="PackedScene" uid="uid://cn0cpmky25y2f" path="res://scenes/levels/nav test/prototype_tile.tscn" id="1_y53tj"]
@@ -52,6 +53,17 @@ material = ExtResource("2_k8hd0")
 size = Vector3(0.64, 1, 0.175)
 
 [node name="NavTest" type="Node3D"]
+
+[node name="ControlTest" type="Control" parent="." node_paths=PackedStringArray("player", "navigation")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_53ora")
+player = NodePath("../Agent")
+navigation = NodePath("../Navigation")
 
 [node name="Navigation" type="Node" parent="." node_paths=PackedStringArray("control_widget", "player")]
 script = ExtResource("1_wylj0")

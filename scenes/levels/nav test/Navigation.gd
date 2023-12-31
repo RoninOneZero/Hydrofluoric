@@ -25,21 +25,11 @@ func _ready() -> void:
 	# init astar
 	navigation_points = _initialize_astar()
 
-	# Grant control DEBUG
-	has_control = true
 	
 	
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept") and has_control: # DEBUG action
-		has_control = false
-		var destination = await process_movement(player.global_position, 3)
-		player.global_position = destination
-		await get_tree().create_timer(0.1).timeout
-		has_control = true
-
-## Return a location based on a location and distance.
-func process_movement(origin: Vector3, distance: int) -> Vector3:
+## Return a path based on a location and distance.
+func process_movement(origin: Vector3, distance: int) -> PackedVector3Array:
 	# Get eligible points
 	var active_points := get_points_in_range(origin, distance)
 	# Highlight points
@@ -47,12 +37,14 @@ func process_movement(origin: Vector3, distance: int) -> Vector3:
 		var node = nav_marker.instantiate()
 		node.position = point
 		get_tree().root.add_child(node)
-	# Get a location from the player
+	# Get a location from the widget
 	control_widget.get_destination(origin, active_points)
 	await control_widget.location_selected
+	var destination = control_widget.position
 	# Remove any markers
-	get_tree().call_group("Markers", "queue_free")
-	return control_widget.global_position
+	get_tree().call_group("Markers", "queue_free")	
+
+	return astar.get_point_path(navigation_points[origin], navigation_points[destination])
 
 
 ## Return a list of blocks adjacent to given Node3D
@@ -114,7 +106,7 @@ func neighbor_above(block: Node3D):
 	return block_grid[target_location] if block_grid.has(target_location) else null
 
 # could be more optimal
-## Assumes location already exists in nav points
+## Return a list of points that can be walked to from the origin point within given distance.
 func get_points_in_range(location: Vector3, distance: int) -> PackedVector3Array:
 	var point_list: PackedVector3Array = []
 	# Poll points to see if navigation to location is possible
