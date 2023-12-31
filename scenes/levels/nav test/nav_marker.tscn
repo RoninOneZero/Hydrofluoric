@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dk4oidnsr2ee6" path="res://assets/icon.svg" id="1_op8yb"]
 
-[node name="NavMarker" type="Node3D"]
+[node name="NavMarker" type="Node3D" groups=["Markers"]]
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.771691, 0)

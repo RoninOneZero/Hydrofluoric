@@ -1,59 +1,58 @@
 class_name Navigation
 extends Node
 
-@export var block_size: int = 2
 
-@export var control_widget: Node3D
+@export var control_widget: ControlWidget
 @export var player: Node3D
-var widget_state := "Idle"
 
+var block_size: int = 2
 var block_grid := {}
 var navigation_points := {}
 
 var astar := AStar3D.new()
 var nav_marker := preload("res://scenes/levels/nav test/nav_marker.tscn")
 
+var has_control: bool = false
+signal control_returned
+
 func _ready() -> void:
+	control_widget.hide()
+	control_widget.block_size = block_size
+
 	#init grid
 	_initialize_block_grid()
 
 	# init astar
 	navigation_points = _initialize_astar()
 
-	# var active_points := get_points_in_range(player.position, 3)
-
-	# for point in active_points:
-	# 	var node = nav_marker.instantiate()
-	# 	node.position = point
-	# 	get_tree().root.add_child.call_deferred(node)
+	# Grant control DEBUG
+	has_control = true
 	
 	
-
-	# Parent widget to the player
-	control_widget.reparent(player)
-	control_widget.position = Vector3.ZERO #+ Vector3.UP * block_size 
 
 func _input(event: InputEvent) -> void:
-	pass
+	if event.is_action_pressed("ui_accept") and has_control: # DEBUG action
+		has_control = false
+		var destination = await process_movement(player.global_position, 3)
+		player.global_position = destination
+		await get_tree().create_timer(0.1).timeout
+		has_control = true
 
-# add second argument for eligible blocks
-## Attempts to move selector over a valid block. Reminder that the selector is one block above player.		
-func move_selector(direction: Vector2) -> void:
-	# Init the destination var, which lands above the player height level
-	var target_destination: Vector3 = control_widget.global_position + Vector3(direction.x, 0, direction.y) * block_size
-	# If a block exists on player level, fail operation
-	if block_grid.has(target_destination + Vector3.DOWN * block_size):
-		return
-	# Ask block grid if there's a block under neath the player (2 grid slots below target)
-	if block_grid.has(target_destination + Vector3.DOWN * block_size * 2):
-		control_widget.global_position = target_destination # Moves widget if true
-
-## Rewrite this fucking function
-func move_player_to(location: Vector3) -> void:
-	player.global_position = location
-	control_widget.position = Vector3.ZERO #+ Vector3.UP * block_size
-
-
+## Return a location based on a location and distance.
+func process_movement(origin: Vector3, distance: int) -> Vector3:
+	# Get eligible points
+	var active_points := get_points_in_range(origin, distance)
+	# Highlight points
+	for point in active_points:
+		var node = nav_marker.instantiate()
+		node.position = point
+		get_tree().root.add_child(node)
+	# Get a location from the player
+	control_widget.get_destination(origin, active_points)
+	await control_widget.location_selected
+	# Remove any markers
+	get_tree().call_group("Markers", "queue_free")
+	return control_widget.global_position
 
 
 ## Return a list of blocks adjacent to given Node3D
@@ -76,13 +75,12 @@ func _initialize_block_grid() -> void:
 	for block in block_list:
 		block_grid[block.position] = block
 
-func deactivate_block(block: GridBlock) -> void:
-	if block: block.hide_marker()
+# func deactivate_block(block: GridBlock) -> void:
+# 	if block: block.hide_marker()
 
-#TODO the highlight should exist on the grid layer of the space you want to get to, not the block underneath
-## Activates highlight of block. Does nothing if block cannot be found.
-func activate_block(block) -> void:
-	if block: block.show_marker()
+# ## Activates highlight of block. Does nothing if block cannot be found.
+# func activate_block(block) -> void:
+# 	if block: block.show_marker()
 
 ## Returns the block north (-z) of given block. If no block exists, returns null.
 func neighbor_north(block: Node3D):
@@ -115,6 +113,7 @@ func neighbor_above(block: Node3D):
 	var target_location := block.position + Vector3.UP * block_size
 	return block_grid[target_location] if block_grid.has(target_location) else null
 
+# could be more optimal
 ## Assumes location already exists in nav points
 func get_points_in_range(location: Vector3, distance: int) -> PackedVector3Array:
 	var point_list: PackedVector3Array = []
