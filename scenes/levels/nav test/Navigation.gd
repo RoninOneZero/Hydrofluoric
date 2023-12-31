@@ -19,14 +19,15 @@ func _ready() -> void:
 
 	# init astar
 	navigation_points = _initialize_astar()
-	
-	#DEBUG pathfind
-	var valid_path := astar.get_point_path(navigation_points[Vector3(1, 3, 3)], navigation_points[Vector3(11, 3, 3)])
 
-	for location in valid_path:
-		var node = nav_marker.instantiate()
-		node.position = location
-		get_tree().root.add_child.call_deferred(node)
+	# var active_points := get_points_in_range(player.position, 3)
+
+	# for point in active_points:
+	# 	var node = nav_marker.instantiate()
+	# 	node.position = point
+	# 	get_tree().root.add_child.call_deferred(node)
+	
+	
 
 	# Parent widget to the player
 	control_widget.reparent(player)
@@ -114,13 +115,21 @@ func neighbor_above(block: Node3D):
 	var target_location := block.position + Vector3.UP * block_size
 	return block_grid[target_location] if block_grid.has(target_location) else null
 
+## Assumes location already exists in nav points
+func get_points_in_range(location: Vector3, distance: int) -> PackedVector3Array:
+	var point_list: PackedVector3Array = []
+	# Poll points to see if navigation to location is possible
+	for point in navigation_points.keys():
+		var sample_path: = astar.get_point_path(navigation_points[point], navigation_points[location])
+		# If the path exists, test its size.
+		if !sample_path.is_empty():
+			if sample_path.size() <= distance + 1:
+				# Add only unique points to the point_list
+				for item in sample_path:
+					if !point_list.has(item):
+						point_list.append(item)
 
-### This needs careful planning.
-### Any empty space above a solid block should be added.
-### Add connections that correspond to 3D space
-### Verticality can come later, for now focus on single layer.
-
-## But also they need to be connected in a gridlike manner.
+	return point_list
 
 ## Generates nav points for A* pathfinding
 func _initialize_astar() -> Dictionary:
