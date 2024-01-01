@@ -6,10 +6,9 @@ extends Node
 @export var geometry: GeometryController
 
 func _ready() -> void:
+	# Initialize components
 	var block_list = geometry.get_block_list()
-
 	for block in block_list:
-		add_child(block)
-
+		navigation.add_child(block)
 	navigation.initialize_navigation(block_list)
 

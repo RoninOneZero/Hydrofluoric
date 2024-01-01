@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://dqkcgiuclfq5m"]
 
-[ext_resource type="Script" path="res://scenes/levels/test_level/test_level.gd" id="1_3ndyi"]
+[ext_resource type="Script" path="res://scenes/levels/test_level/MissionController.gd" id="1_v8d7g"]
 [ext_resource type="Script" path="res://scenes/levels/navigation/ControlTest.gd" id="1_w1sld"]
 [ext_resource type="Script" path="res://scenes/levels/navigation/Navigation.gd" id="2_xqfr0"]
 [ext_resource type="Script" path="res://scenes/levels/navigation/ControlWidget.gd" id="3_7nc17"]
@@ -61,7 +61,7 @@ ambient_light_color = Color(1, 1, 1, 1)
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_k7h8o"]
 
 [node name="Level" type="Node" node_paths=PackedStringArray("navigation", "geometry")]
-script = ExtResource("1_3ndyi")
+script = ExtResource("1_v8d7g")
 navigation = NodePath("Services/Navigation")
 geometry = NodePath("Environment/Geometry")
 
