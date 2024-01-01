@@ -4,18 +4,16 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g7dyi"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3i0hy"]
+[sub_resource type="PrismMesh" id="PrismMesh_fyx8b"]
+size = Vector3(0.35, 0.39, 0.18)
 
-[node name="Agent" type="CharacterBody3D"]
+[node name="Agent" type="Node3D"]
 script = ExtResource("1_l0p1e")
 metadata/_edit_group_ = true
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 0.6
-target_desired_distance = 0.6
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_g7dyi")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_3i0hy")
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.397386, -0.657844)
+mesh = SubResource("PrismMesh_fyx8b")
