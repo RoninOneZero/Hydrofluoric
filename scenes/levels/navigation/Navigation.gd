@@ -2,15 +2,16 @@ class_name Navigation
 extends Node
 
 
-@export var control_widget: ControlWidget
 @export var player: Node3D
+
+@onready var control_widget: ControlWidget = get_node("ControlWidget")
 
 var block_size: int = 2
 var block_grid := {}
 var navigation_points := {}
 
 var astar := AStar3D.new()
-var nav_marker := preload("res://scenes/levels/nav test/nav_marker.tscn")
+var nav_marker := preload("nav_marker.tscn")
 
 var has_control: bool = false
 signal control_returned
@@ -19,14 +20,11 @@ func _ready() -> void:
 	control_widget.hide()
 	control_widget.block_size = block_size
 
-	#init grid
-	_initialize_block_grid()
-
-	# init astar
-	navigation_points = _initialize_astar()
 
 	
-	
+func initialize_navigation(blocks: Array[Node3D]) -> void:
+	_initialize_block_grid(blocks)
+	navigation_points = _initialize_astar()	
 
 ## Return a path based on a location and distance.
 func process_movement(origin: Vector3, distance: int) -> PackedVector3Array:
@@ -61,18 +59,11 @@ func get_blocks_in_range(location: Node3D) -> Array[Node3D]:
 
 
 
-## Initializes block_grid
-func _initialize_block_grid() -> void:
-	var block_list = get_tree().get_nodes_in_group("Blocks")
-	for block in block_list:
-		block_grid[block.position] = block
+## Initializes block_grid. 
+func _initialize_block_grid(blocks: Array[Node3D]) -> void:
+	for block in blocks:
+		block_grid[block.global_position] = block
 
-# func deactivate_block(block: GridBlock) -> void:
-# 	if block: block.hide_marker()
-
-# ## Activates highlight of block. Does nothing if block cannot be found.
-# func activate_block(block) -> void:
-# 	if block: block.show_marker()
 
 ## Returns the block north (-z) of given block. If no block exists, returns null.
 func neighbor_north(block: Node3D):

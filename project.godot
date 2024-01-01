@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Hydrochloric"
-run/main_scene="res://scenes/levels/nav test/nav_test.tscn"
+run/main_scene="res://scenes/levels/test_level/test_level.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://assets/cards_icon.png"
 
@@ -57,3 +57,4 @@ poke={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.14902, 0.156863, 0.262745, 1)

@@ -6,6 +6,9 @@ var valid_points: PackedVector3Array = []
 
 signal location_selected
 
+func _ready() -> void:
+	hide()
+
 func _unhandled_input(event: InputEvent) -> void:
 	if valid_points.is_empty():
 		return
