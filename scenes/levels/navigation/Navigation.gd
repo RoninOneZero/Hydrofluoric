@@ -145,17 +145,24 @@ func _initialize_astar() -> Dictionary:
 
 	# Add ramps
 	for location in ramp_grid:
+		# Remove the nav_point of any block sharing this space
+		var target_block: Vector3 = location + Vector3(0, +0.5, 0)
+		if valid_points.has(target_block):
+			astar.remove_point(valid_points[target_block])
+			valid_points.erase(target_block)
+		target_block = location + Vector3(0, -0.5, 0)
+		if valid_points.has(target_block):
+			astar.remove_point(valid_points[target_block])
+			valid_points.erase(target_block)
 		# Find out if there's empty space above the ramp
 		if !block_grid.has(ramp_grid[location].position + Vector3.UP * 1.5):
 			var point_id: int = astar.get_available_point_id()
 			# Set the nav_point position to be a distance away from the normal of the node
-			var nav_position: Vector3 = location + Vector3.UP + (Vector3.UP * ramp_grid[location].rotation * block_size)
+			var nav_position: Vector3 = location + Vector3.UP * block_size
 			valid_points[nav_position] = point_id
 			astar.add_point(point_id, nav_position)
-			
-			# Remove the nav point of the block underneath
 
-	
+			# Remove the nav_point of the block underneath
 		
 
 
