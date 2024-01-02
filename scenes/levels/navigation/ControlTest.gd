@@ -17,12 +17,13 @@ func _input(event):
 	# Contextual actions.
 	if event.is_action_pressed("ui_accept"):
 		get_viewport().set_input_as_handled() # Why does this work
-		has_control = false		
+				
 		await give_move_order(3)
-		has_control = true
 
 ## Orders the player to move a given distance. Called with await.
 func give_move_order(move_distance: int = 3) -> void:
+	has_control = false
 	var path := await navigation.process_movement(player.global_position, move_distance)
 	player.set_path(path)
-	await player.finished_movement
+	await player.finished_movement	
+	has_control = true

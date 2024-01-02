@@ -8,6 +8,7 @@ extends Node
 
 var block_size: int = 2
 var block_grid := {}
+var ramp_grid := {}
 var navigation_points := {}
 
 var astar := AStar3D.new()
@@ -22,8 +23,12 @@ func _ready() -> void:
 
 
 	
-func initialize_navigation(blocks: Array[Node3D]) -> void:
-	_initialize_block_grid(blocks)
+func initialize_navigation(blocks: Array[Node3D], ramps: Array[Node3D]) -> void:
+	for block in blocks:
+		block_grid[block.global_position] = block
+	for location in ramps:
+		ramp_grid[location.global_position] = location
+
 	navigation_points = _initialize_astar()	
 
 ## Return a path based on a location and distance.
@@ -60,9 +65,9 @@ func get_blocks_in_range(location: Node3D) -> Array[Node3D]:
 
 
 ## Initializes block_grid. 
-func _initialize_block_grid(blocks: Array[Node3D]) -> void:
-	for block in blocks:
-		block_grid[block.global_position] = block
+# func _initialize_block_grid(blocks: Array[Node3D]) -> void:
+# 	for block in blocks:
+# 		block_grid[block.global_position] = block
 
 
 ## Returns the block north (-z) of given block. If no block exists, returns null.
@@ -124,7 +129,7 @@ func _initialize_astar() -> Dictionary:
 		if !neighbor_above(block_grid[location]): # If yes, add the open space to the nav
 			var point_id: int = astar.get_available_point_id()
 			valid_points[location + Vector3.UP * block_size] = point_id
-			astar.add_point(point_id, location + Vector3.UP * block_size)
+			astar.add_point(point_id, location + Vector3.UP * block_size) # is *block_size needed?
 
 	# Find valid connections
 	for location in valid_points:
@@ -137,6 +142,22 @@ func _initialize_astar() -> Dictionary:
 		if valid_points.has(south): astar.connect_points(valid_points[location], valid_points[south])
 		if valid_points.has(east): astar.connect_points(valid_points[location], valid_points[east])
 		if valid_points.has(west): astar.connect_points(valid_points[location], valid_points[west])
+
+	# Add ramps
+	for location in ramp_grid:
+		# Find out if there's empty space above the ramp
+		if !block_grid.has(ramp_grid[location].position + Vector3.UP * 1.5):
+			var point_id: int = astar.get_available_point_id()
+			# Set the nav_point position to be a distance away from the normal of the node
+			var nav_position: Vector3 = location + Vector3.UP + (Vector3.UP * ramp_grid[location].rotation * block_size)
+			valid_points[nav_position] = point_id
+			astar.add_point(point_id, nav_position)
+			
+			# Remove the nav point of the block underneath
+
+	
+		
+
 
 	return valid_points
 

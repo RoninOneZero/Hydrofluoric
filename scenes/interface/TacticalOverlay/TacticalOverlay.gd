@@ -11,8 +11,11 @@ const HANDSIZE := 6
 
 @onready var hand: MetalHand = $Hand
 @onready var deck_status: Label = get_node("StatusMeters/Agent 1/Deck")
-
 #TODO add a cards in hand status label
+
+# Control flags
+var state
+var has_control := true
 
 var graveyard: Array[MetalCard] = []
 
@@ -26,13 +29,8 @@ func _ready() -> void:
 	
 # All this fucking sucks
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		draw_from_deck(1)
-	# create a discard function that returns card to its original state.
-	if event.is_action_pressed("ui_cancel"):
-		discard_from_hand(0)
+	pass
 
-# For now this only does movement
 ## Resolves the effect or movement of a card. Also Messy
 func on_card_played(index: int, arg) -> void:
 	discard_from_hand(index)
