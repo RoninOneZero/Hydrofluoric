@@ -26,10 +26,12 @@ func _ready() -> void:
 func initialize_navigation(blocks: Array[Node3D], ramps: Array[Node3D]) -> void:
 	for block in blocks:
 		block_grid[block.global_position] = block
-	for location in ramps:
-		ramp_grid[location.global_position] = location
+	# for location in ramps:
+	# 	ramp_grid[location.global_position] = location
 
 	navigation_points = _initialize_astar()	
+
+
 
 ## Return a path based on a location and distance.
 func process_movement(origin: Vector3, distance: int) -> PackedVector3Array:
@@ -143,7 +145,7 @@ func _initialize_astar() -> Dictionary:
 		if valid_points.has(east): astar.connect_points(valid_points[location], valid_points[east])
 		if valid_points.has(west): astar.connect_points(valid_points[location], valid_points[west])
 
-	# Add ramps
+
 	for location in ramp_grid:
 		# Remove the nav_point of any block sharing this space
 		var target_block: Vector3 = location + Vector3(0, +0.5, 0)
@@ -154,15 +156,23 @@ func _initialize_astar() -> Dictionary:
 		if valid_points.has(target_block):
 			astar.remove_point(valid_points[target_block])
 			valid_points.erase(target_block)
+		
 		# Find out if there's empty space above the ramp
 		if !block_grid.has(ramp_grid[location].position + Vector3.UP * 1.5):
 			var point_id: int = astar.get_available_point_id()
-			# Set the nav_point position to be a distance away from the normal of the node
 			var nav_position: Vector3 = location + Vector3.UP * block_size
 			valid_points[nav_position] = point_id
 			astar.add_point(point_id, nav_position)
 
-			# Remove the nav_point of the block underneath
+			#Establish the resulting navpoint's connections
+			#look at potential lower ramp locations
+			# if no ramp, connect to possible block
+			# look at potential upp ramp locations
+			# if no ramp connect to possible block
+		
+
+
+		
 		
 
 
