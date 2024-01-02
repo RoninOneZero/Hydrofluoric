@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbrl5rucni4l5"]
+
+[ext_resource type="Script" path="res://agents/Agent.gd" id="1_l0p1e"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g7dyi"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_fyx8b"]
+size = Vector3(0.35, 0.39, 0.18)
+
+[node name="Agent" type="Node3D"]
+script = ExtResource("1_l0p1e")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_g7dyi")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.397386, -0.657844)
+mesh = SubResource("PrismMesh_fyx8b")

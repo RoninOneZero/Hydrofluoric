@@ -14,6 +14,7 @@ var card_name: String
 var info: String 
 var cost: int 
 var portrait: Texture 
+var movement: int
 
 # Catalogue stats
 var card_ID: int

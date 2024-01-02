@@ -7,6 +7,13 @@ const MARGIN := 200
 
 var contents: Array[MetalCard] = [] : set = set_contents
 
+## Signal for a card being used. If sending an int, assumes card was played as movement.
+signal card_played
+
+## Signals a card for its effect to be resolved. TODO allow for functions besides movement
+func play_card_at(index: int) -> void:
+	emit_signal("card_played", index, contents[index].movement)
+
 ## Introduce a card to hand. Assumes validity.
 func add_card(card: MetalCard) -> void:
 	if is_full():

@@ -12,5 +12,6 @@ Activate CQC ->
 	Reveal location of an item on the current level."
 cost = 8
 portrait = ExtResource("1_dicu6")
+movement = 3
 rarity = 1
 limit = 4
