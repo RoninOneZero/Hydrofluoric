@@ -25,6 +25,10 @@ window/size/resizable=false
 
 movie_writer/movie_file="C:/Users/Ronin/Downloads/Godot Writes/orb.avi"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 ui_accept={

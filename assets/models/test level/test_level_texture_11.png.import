@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tatnt48iop33"
-path.s3tc="res://.godot/imported/tile_sample_texture_02.png-22e0671fa681f9b9ae4625e50b10f694.s3tc.ctex"
+uid="uid://cjd6r3jvx5hbw"
+path.s3tc="res://.godot/imported/test_level_texture_11.png-c9e8f6d43d41e5ecca8a2953858b20db.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://assets/models/tile sample/tile_sample_texture_02.png"
-dest_files=["res://.godot/imported/tile_sample_texture_02.png-22e0671fa681f9b9ae4625e50b10f694.s3tc.ctex"]
+source_file="res://assets/models/test level/test_level_texture_11.png"
+dest_files=["res://.godot/imported/test_level_texture_11.png-c9e8f6d43d41e5ecca8a2953858b20db.s3tc.ctex"]
 
 [params]
 

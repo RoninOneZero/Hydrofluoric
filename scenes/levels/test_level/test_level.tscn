@@ -1,11 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://dqkcgiuclfq5m"]
+[gd_scene load_steps=16 format=3 uid="uid://dqkcgiuclfq5m"]
 
 [ext_resource type="Script" path="res://scenes/levels/test_level/MissionController.gd" id="1_v8d7g"]
 [ext_resource type="Script" path="res://scenes/levels/navigation/ControlTest.gd" id="1_w1sld"]
 [ext_resource type="Script" path="res://scenes/levels/navigation/Navigation.gd" id="2_xqfr0"]
 [ext_resource type="Script" path="res://scenes/levels/navigation/ControlWidget.gd" id="3_7nc17"]
 [ext_resource type="Material" uid="uid://dc2d4ueh6nnyr" path="res://agents/control_widget.material" id="4_twq4m"]
-[ext_resource type="PackedScene" uid="uid://dbrl5rucni4l5" path="res://agents/agent.tscn" id="5_jmjmk"]
+[ext_resource type="PackedScene" uid="uid://c33gu0xi2p04" path="res://scenes/levels/level components/nav_point.tscn" id="5_865jn"]
+[ext_resource type="PackedScene" uid="uid://bsxnr3ueln64g" path="res://scenes/levels/test_level/test_level_mesh.tscn" id="6_dknof"]
 [ext_resource type="Script" path="res://scenes/levels/test_level/Geometry.gd" id="6_rajbd"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_xqgci"]
@@ -66,9 +67,106 @@ geometry = NodePath("Environment/Geometry")
 
 [node name="Services" type="Node" parent="."]
 
-[node name="Navigation" type="Node" parent="Services" node_paths=PackedStringArray("player")]
+[node name="Navigation" type="Node" parent="Services"]
 script = ExtResource("2_xqfr0")
-player = NodePath("../../Agents/Allies/Leviathan")
+
+[node name="NavPoints" type="Node" parent="Services/Navigation"]
+
+[node name="NavPoint" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 4)
+
+[node name="NavPoint2" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4)
+
+[node name="NavPoint3" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
+
+[node name="NavPoint6" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 2)
+
+[node name="NavPoint7" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
+
+[node name="NavPoint8" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -2)
+
+[node name="NavPoint9" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
+
+[node name="NavPoint10" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -2)
+
+[node name="NavPoint11" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -2)
+
+[node name="NavPoint13" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -4)
+
+[node name="NavPoint56" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 2, 4, -4)
+
+[node name="NavPoint14" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -4)
+
+[node name="NavPoint31" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2.5, -4)
+
+[node name="NavPoint12" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 0)
+
+[node name="NavPoint29" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="NavPoint30" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, 0)
+
+[node name="NavPoint4" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 2)
+
+[node name="NavPoint5" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 2)
+
+[node name="NavPoint15" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 4)
+
+[node name="NavPoint16" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, 4)
+
+[node name="NavPoint17" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 4)
+
+[node name="NavPoint18" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 4)
+
+[node name="NavPoint19" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 4)
+
+[node name="NavPoint20" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 2)
+
+[node name="NavPoint21" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 0)
+
+[node name="NavPoint22" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -2)
+
+[node name="NavPoint23" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -4)
+
+[node name="NavPoint24" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 6, -6)
+
+[node name="NavPoint25" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6, -6)
+
+[node name="NavPoint26" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -6)
+
+[node name="NavPoint27" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6, -6)
+
+[node name="NavPoint28" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 6, -6)
 
 [node name="ControlWidget" type="Node3D" parent="Services/Navigation"]
 visible = false
@@ -119,19 +217,18 @@ camera_attributes = SubResource("CameraAttributesPractical_k7h8o")
 [node name="Geometry" type="Node3D" parent="Environment"]
 script = ExtResource("6_rajbd")
 
+[node name="TestLevelMesh" parent="Environment/Geometry" instance=ExtResource("6_dknof")]
+
+[node name="Camera3D" type="Camera3D" parent="Environment"]
+transform = Transform3D(0.544636, 0.582591, -0.603291, 0, 0.71934, 0.694658, 0.838673, -0.378336, 0.391778, -8.40099, 10.4605, 3.24319)
+
 [node name="Agents" type="Node" parent="."]
 
 [node name="Allies" type="Node3D" parent="Agents"]
 
-[node name="Leviathan" parent="Agents/Allies" groups=["Player"] instance=ExtResource("5_jmjmk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, 3)
-
-[node name="Camera3D" type="Camera3D" parent="Agents/Allies/Leviathan"]
-transform = Transform3D(0.779884, 0.583185, -0.227322, 0, 0.363179, 0.931719, 0.625924, -0.726633, 0.283238, -0.00637698, 9.53751, 2.25328)
-
 [node name="Enemies" type="Node3D" parent="Agents"]
 
-[node name="ControlTest" type="Control" parent="." node_paths=PackedStringArray("player", "navigation")]
+[node name="ControlTest" type="Control" parent="." node_paths=PackedStringArray("navigation")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -139,5 +236,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w1sld")
-player = NodePath("../Agents/Allies/Leviathan")
 navigation = NodePath("../Services/Navigation")

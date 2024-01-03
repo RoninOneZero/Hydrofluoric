@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://c33gu0xi2p04"]
+
+[ext_resource type="Texture2D" uid="uid://dk4oidnsr2ee6" path="res://assets/icon.svg" id="1_rqrpn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2kwjx"]
+transparency = 1
+shading_mode = 0
+specular_mode = 2
+disable_ambient_light = true
+disable_fog = true
+albedo_color = Color(0.952941, 0.815686, 0, 0.686275)
+
+[sub_resource type="BoxMesh" id="BoxMesh_niqlu"]
+material = SubResource("StandardMaterial3D_2kwjx")
+
+[node name="NavPoint" type="Marker3D"]
+gizmo_extents = 1.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_niqlu")
+
+[node name="FloorMarker" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.8, 0)
+visible = false
+modulate = Color(1, 1, 1, 0.337255)
+texture = ExtResource("1_rqrpn")
+
+[node name="HangMarker" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
+visible = false
+modulate = Color(1, 1, 1, 0.337255)
+texture = ExtResource("1_rqrpn")
+
+[node name="SlopeMarker" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.447759, 0.894154, 0, -0.894154, 0.447759, 0, 0, 0)
+visible = false
+modulate = Color(1, 1, 1, 0.337255)
+texture = ExtResource("1_rqrpn")
