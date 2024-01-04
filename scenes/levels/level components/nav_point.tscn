@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c33gu0xi2p04"]
 
 [ext_resource type="Script" path="res://scenes/levels/level components/nav_point.gd" id="1_hie01"]
-[ext_resource type="Texture2D" uid="uid://dk4oidnsr2ee6" path="res://assets/icon.svg" id="1_rqrpn"]
+[ext_resource type="Texture2D" uid="uid://ec11m281ictu" path="res://assets/art/tile.png" id="2_8f0yu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2kwjx"]
 transparency = 1
@@ -22,19 +22,22 @@ script = ExtResource("1_hie01")
 mesh = SubResource("BoxMesh_niqlu")
 
 [node name="FloorMarker" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.8, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.352, 0)
 visible = false
-modulate = Color(1, 1, 1, 0.337255)
-texture = ExtResource("1_rqrpn")
+modulate = Color(0, 0.654902, 0.901961, 0.333333)
+pixel_size = 0.0018
+texture = ExtResource("2_8f0yu")
 
 [node name="HangMarker" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.224, -0.352)
 visible = false
-modulate = Color(1, 1, 1, 0.337255)
-texture = ExtResource("1_rqrpn")
+modulate = Color(0, 0.654902, 0.901961, 0.576471)
+pixel_size = 0.0018
+texture = ExtResource("2_8f0yu")
 
 [node name="SlopeMarker" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.447759, 0.894154, 0, -0.894154, 0.447759, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.447759, 0.894154, 0, -0.894154, 0.447759, 0, -0.224, -0.224)
 visible = false
-modulate = Color(1, 1, 1, 0.337255)
-texture = ExtResource("1_rqrpn")
+modulate = Color(0, 0.654902, 0.901961, 0.576471)
+pixel_size = 0.0018
+texture = ExtResource("2_8f0yu")

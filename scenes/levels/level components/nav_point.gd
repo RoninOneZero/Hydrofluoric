@@ -22,11 +22,17 @@ var connections := [
 ]
 
 func _ready() -> void:
-    hide()
+    $MeshInstance3D.hide()
 
 func highlight() -> void:
     show()
+    $FloorMarker.show()
 
+func highlight_off() ->void:
+    $FloorMarker.hide()
+
+
+## Possible to have this node just check every single point, and not just based on params
 func get_connections() -> PackedVector3Array:
     var list: PackedVector3Array = []
 
@@ -37,12 +43,16 @@ func get_connections() -> PackedVector3Array:
         BlockType.FLOOR: list.append(global_position + block_size * Vector3.RIGHT)
         BlockType.ONE_UP: list.append(global_position + Vector3(block_size, 1.0, 0))
         BlockType.HALF_UP: list.append(global_position + Vector3(block_size, 0.5, 0))
+        BlockType.ONE_DOWN: list.append(global_position + Vector3(block_size, -1.0, 0))
+        BlockType.HALF_DOWN: list.append(global_position + Vector3(block_size, -0.5, 0))
 
     match connection_south:
         BlockType.FLOOR: list.append(global_position + block_size * Vector3.BACK)
         
     match connection_west:
         BlockType.FLOOR: list.append(global_position + block_size * Vector3.LEFT)
+        BlockType.ONE_UP: list.append(global_position + Vector3(-block_size, 1.0, 0))
+        BlockType.HALF_UP: list.append(global_position + Vector3(-block_size, 0.5, 0))
         BlockType.ONE_DOWN: list.append(global_position + Vector3(-block_size, -1.0, 0))
         BlockType.HALF_DOWN: list.append(global_position + Vector3(-block_size, -0.5, 0))
 

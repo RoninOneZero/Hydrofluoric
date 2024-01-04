@@ -1,9 +1,6 @@
 class_name Navigation
 extends Node
 
-
-@export var player: Node3D
-
 @onready var control_widget: ControlWidget = get_node("ControlWidget")
 
 var spawn_point := Vector3.ZERO
@@ -32,16 +29,18 @@ func initialize_navigation() -> void:
 func process_movement(origin: Vector3, distance: int) -> PackedVector3Array:
 	# Get eligible points
 	var active_points := get_points_in_range(origin, distance)
+
+
 	# Highlight points
 	for point in active_points:
-		pass
+		nav_markers[nav_points.find(point)].highlight()
 	# Get a location from the widget
-	#print(active_points)
 	control_widget.get_destination(origin, active_points)
 	await control_widget.location_selected
 	var destination = control_widget.position
+
 	# Remove any markers
-	#get_tree().call_group("Markers", "queue_free")	
+	get_tree().call_group("NavPoints", "highlight_off")
 
 	return astar.get_point_path(nav_points.find(origin), nav_points.find(destination))
 

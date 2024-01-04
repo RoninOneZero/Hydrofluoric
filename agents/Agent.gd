@@ -1,4 +1,3 @@
-### All this shit is broken
 
 class_name Agent
 extends Node3D
@@ -7,6 +6,7 @@ extends Node3D
 
 var start_movement := false
 
+signal started_movement
 signal point_reached
 signal finished_movement
 
@@ -34,5 +34,6 @@ func move_along_path(origin: Vector3, delta: float) -> void:
 			move_along_path(checkpoint, delta)
 
 func set_path(arg: PackedVector3Array) -> void:
+	emit_signal("started_movement")
 	_path = arg
 	start_movement = true
