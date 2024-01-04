@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dqkcgiuclfq5m"]
+[gd_scene load_steps=17 format=3 uid="uid://dqkcgiuclfq5m"]
 
 [ext_resource type="Script" path="res://scenes/levels/test_level/MissionController.gd" id="1_v8d7g"]
 [ext_resource type="Script" path="res://scenes/levels/navigation/ControlTest.gd" id="1_w1sld"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c33gu0xi2p04" path="res://scenes/levels/level components/nav_point.tscn" id="5_865jn"]
 [ext_resource type="PackedScene" uid="uid://bsxnr3ueln64g" path="res://scenes/levels/test_level/test_level_mesh.tscn" id="6_dknof"]
 [ext_resource type="Script" path="res://scenes/levels/test_level/Geometry.gd" id="6_rajbd"]
+[ext_resource type="PackedScene" uid="uid://dbrl5rucni4l5" path="res://agents/agent.tscn" id="8_t2snn"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_xqgci"]
 material = ExtResource("4_twq4m")
@@ -60,8 +61,9 @@ ambient_light_color = Color(1, 1, 1, 1)
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_k7h8o"]
 
-[node name="Level" type="Node" node_paths=PackedStringArray("navigation", "geometry")]
+[node name="Level" type="Node" node_paths=PackedStringArray("player", "navigation", "geometry")]
 script = ExtResource("1_v8d7g")
+player = NodePath("Agents/Allies/Agent")
 navigation = NodePath("Services/Navigation")
 geometry = NodePath("Environment/Geometry")
 
@@ -70,7 +72,7 @@ geometry = NodePath("Environment/Geometry")
 [node name="Navigation" type="Node" parent="Services"]
 script = ExtResource("2_xqfr0")
 
-[node name="NavPoints" type="Node" parent="Services/Navigation"]
+[node name="NavPoints" type="Node3D" parent="Services/Navigation"]
 
 [node name="NavPoint" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 4)
@@ -79,94 +81,84 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 4)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4)
 
 [node name="NavPoint3" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
-
-[node name="NavPoint6" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 2)
-
-[node name="NavPoint7" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
-
-[node name="NavPoint8" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -2)
-
-[node name="NavPoint9" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
-
-[node name="NavPoint10" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -2)
-
-[node name="NavPoint11" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -2)
-
-[node name="NavPoint13" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -4)
-
-[node name="NavPoint56" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 2, 4, -4)
-
-[node name="NavPoint14" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -4)
-
-[node name="NavPoint31" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2.5, -4)
-
-[node name="NavPoint12" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 0)
-
-[node name="NavPoint29" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
-
-[node name="NavPoint30" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, 0)
-
-[node name="NavPoint4" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 2)
 
 [node name="NavPoint5" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 2)
 
+[node name="NavPoint6" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 0)
+
+[node name="NavPoint7" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -2)
+
+[node name="NavPoint8" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -4)
+
+[node name="NavPoint9" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -2)
+
+[node name="NavPoint11" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
+connection_north = -1
+
+[node name="NavPoint12" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -2)
+connection_north = -1
+
+[node name="NavPoint13" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 2)
+
+[node name="NavPoint14" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
+
+[node name="NavPoint10" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -4)
+connection_east = 3
+
 [node name="NavPoint15" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -4)
+connection_west = 4
+
+[node name="NavPoint24" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3.5, -4)
+connection_east = 3
+connection_south = -1
+connection_west = 2
+
+[node name="NavPoint25" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -4)
+connection_east = 1
+connection_south = -1
+connection_west = 4
 
 [node name="NavPoint16" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -2)
 
 [node name="NavPoint17" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 0)
 
 [node name="NavPoint18" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 2)
 
 [node name="NavPoint19" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 4)
 
 [node name="NavPoint20" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 4)
 
 [node name="NavPoint21" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 4)
+spawn_point = true
 
 [node name="NavPoint22" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, 4)
 
 [node name="NavPoint23" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 4)
 
-[node name="NavPoint24" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 6, -6)
-
-[node name="NavPoint25" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6, -6)
-
-[node name="NavPoint26" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -6)
-
-[node name="NavPoint27" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6, -6)
-
-[node name="NavPoint28" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 6, -6)
+[node name="NavPoint4" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
 
 [node name="ControlWidget" type="Node3D" parent="Services/Navigation"]
 visible = false
@@ -219,12 +211,15 @@ script = ExtResource("6_rajbd")
 
 [node name="TestLevelMesh" parent="Environment/Geometry" instance=ExtResource("6_dknof")]
 
-[node name="Camera3D" type="Camera3D" parent="Environment"]
-transform = Transform3D(0.544636, 0.582591, -0.603291, 0, 0.71934, 0.694658, 0.838673, -0.378336, 0.391778, -8.40099, 10.4605, 3.24319)
-
 [node name="Agents" type="Node" parent="."]
 
 [node name="Allies" type="Node3D" parent="Agents"]
+
+[node name="Agent" parent="Agents/Allies" instance=ExtResource("8_t2snn")]
+
+[node name="Camera3D" type="Camera3D" parent="Agents/Allies/Agent"]
+transform = Transform3D(0.99999, 0.0028927, -0.0032696, 0, 0.748956, 0.66262, 0.00436554, -0.662614, 0.748948, -0.732706, 7.27104, 7.20033)
+current = true
 
 [node name="Enemies" type="Node3D" parent="Agents"]
 

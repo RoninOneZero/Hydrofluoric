@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c33gu0xi2p04"]
+[gd_scene load_steps=5 format=3 uid="uid://c33gu0xi2p04"]
 
+[ext_resource type="Script" path="res://scenes/levels/level components/nav_point.gd" id="1_hie01"]
 [ext_resource type="Texture2D" uid="uid://dk4oidnsr2ee6" path="res://assets/icon.svg" id="1_rqrpn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2kwjx"]
@@ -13,8 +14,9 @@ albedo_color = Color(0.952941, 0.815686, 0, 0.686275)
 [sub_resource type="BoxMesh" id="BoxMesh_niqlu"]
 material = SubResource("StandardMaterial3D_2kwjx")
 
-[node name="NavPoint" type="Marker3D"]
+[node name="NavPoint" type="Marker3D" groups=["NavPoints"]]
 gizmo_extents = 1.0
+script = ExtResource("1_hie01")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_niqlu")

@@ -33,8 +33,39 @@ func get_destination(origin: Vector3, points: PackedVector3Array) -> void:
 
 
 func _move_cursor(direction: Vector3) -> void:
-	if valid_points.has(global_position + block_size * direction):
-		global_position += block_size * direction
+	#Vector3(0, 0.5, 0)
+	var target = global_position + (block_size * direction)
+
+	var upper = target + Vector3(0, +0.5, 0)
+	var lower = target + Vector3(0, -0.5, 0)
+	var upper_high = target + Vector3(0, +1.0, 0)
+	var lower_low = target + Vector3(0, -1.0, 0)
+
+	# Check upper high
+	if valid_points.has(upper_high):
+		global_position = upper_high
+		return
+
+
+	# Check upper
+	if valid_points.has(upper):
+		global_position = upper
+		return
+
+	# Check lower
+	if valid_points.has(lower):
+		global_position = lower
+		return
+
+	# Check lower
+	if valid_points.has(lower_low):
+		global_position = lower_low
+		return
+
+	# Check same height
+	if valid_points.has(target):
+		global_position = target
+		return
 
 func _confirm_location() -> void:
 	valid_points.clear()
