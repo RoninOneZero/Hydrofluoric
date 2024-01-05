@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo8mxtcjk6sve"]
+
+[ext_resource type="PackedScene" uid="uid://dbrl5rucni4l5" path="res://agents/agent.tscn" id="1_njpeo"]
+[ext_resource type="Script" path="res://Guard.gd" id="2_dtqc2"]
+
+[node name="Guard" node_paths=PackedStringArray("target_list") groups=["Guards"] instance=ExtResource("1_njpeo")]
+script = ExtResource("2_dtqc2")
+target_list = []

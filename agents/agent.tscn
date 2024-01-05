@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbrl5rucni4l5"]
+[gd_scene load_steps=5 format=3 uid="uid://dbrl5rucni4l5"]
 
 [ext_resource type="Script" path="res://agents/Agent.gd" id="1_l0p1e"]
 
@@ -7,14 +7,27 @@
 [sub_resource type="PrismMesh" id="PrismMesh_fyx8b"]
 size = Vector3(0.35, 0.39, 0.18)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_00yul"]
+
 [node name="Agent" type="Node3D"]
 script = ExtResource("1_l0p1e")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Body" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
 transform = Transform3D(0.769201, 0, 0, 0, 0.769201, 0, 0, 0, 0.769201, 0, 0.0458581, -0.0759149)
 mesh = SubResource("CapsuleMesh_g7dyi")
+skeleton = NodePath("../..")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Body"]
 transform = Transform3D(0.769201, 0, 0, 0, -3.36229e-08, 0.769201, 0, -0.769201, -3.36229e-08, 0, 0.351528, -0.581929)
 mesh = SubResource("PrismMesh_fyx8b")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="CharacterBody3D" parent="Body"]
+transform = Transform3D(0.769201, 0, 0, 0, 0.769201, 0, 0, 0, 0.769201, 0, 0.0458581, -0.0759149)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/StaticBody3D"]
+shape = SubResource("CapsuleShape3D_00yul")

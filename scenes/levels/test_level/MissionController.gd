@@ -8,6 +8,9 @@ extends Node
 @export var geometry: GeometryController
 
 func _ready() -> void:
+	# DEBUG
+	
+
 	# Set control
 	$ControlTest.player = player
 	$ControlTest.camera = camera

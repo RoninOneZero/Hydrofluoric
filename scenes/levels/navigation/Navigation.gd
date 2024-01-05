@@ -12,6 +12,8 @@ var nav_points: PackedVector3Array = []
 var astar := AStar3D.new()
 var nav_marker := preload("nav_marker.tscn")
 
+var entities := {}
+
 var has_control: bool = false
 signal control_returned
 
@@ -44,57 +46,6 @@ func process_movement(origin: Vector3, distance: int) -> PackedVector3Array:
 
 	return astar.get_point_path(nav_points.find(origin), nav_points.find(destination))
 
-
-## Return a list of blocks adjacent to given Node3D
-# func get_blocks_in_range(location: Node3D) -> Array[Node3D]:
-# 	var origin_block: Node3D = neighbor_below(location)
-# 	var list: Array[Node3D] = [origin_block]
-
-# 	if neighbor_north(origin_block): list.append(neighbor_north(origin_block))
-# 	if neighbor_south(origin_block): list.append(neighbor_south(origin_block))
-# 	if neighbor_east(origin_block): list.append(neighbor_east(origin_block))
-# 	if neighbor_west(origin_block): list.append(neighbor_west(origin_block))
-
-# 	return list
-
-
-
-## Initializes block_grid. 
-# func _initialize_block_grid(blocks: Array[Node3D]) -> void:
-# 	for block in blocks:
-# 		block_grid[block.global_position] = block
-
-
-# ## Returns the block north (-z) of given block. If no block exists, returns null.
-# func neighbor_north(block: Node3D):
-# 	var target_location := block.position + Vector3.FORWARD * block_size
-# 	return block_grid[target_location] if block_grid.has(target_location) else null
-
-# ## Returns the block south (+z) of given block. If no block exists, returns null.
-# func neighbor_south(block: Node3D):
-# 	var target_location := block.position + Vector3.BACK * block_size
-# 	return block_grid[target_location] if block_grid.has(target_location) else null
-
-# ## Returns the block east (+x) of given block. If no block exists, returns null.
-# func neighbor_east(block: Node3D):
-# 	var target_location := block.position + Vector3.RIGHT * block_size
-# 	return block_grid[target_location] if block_grid.has(target_location) else null
-
-
-# ## Returns the block west (-x) of given block. If no block exists, returns null.
-# func neighbor_west(block: Node3D):
-# 	var target_location := block.position + Vector3.LEFT * block_size
-# 	return block_grid[target_location] if block_grid.has(target_location) else null
-
-# ## Returns the block below (-y) of given block. If no block exists, returns null.
-# func neighbor_below(block: Node3D):
-# 	var target_location := block.position + Vector3.DOWN * block_size
-# 	return block_grid[target_location] if block_grid.has(target_location) else null
-
-# ## Returns the block above (+y) of given block. If no block exists, returns null.
-# func neighbor_above(block: Node3D):
-# 	var target_location := block.position + Vector3.UP * block_size
-# 	return block_grid[target_location] if block_grid.has(target_location) else null
 
 # could be more optimal
 ## Return a list of points that can be walked to from the origin point within given distance.
@@ -138,4 +89,6 @@ func _initialize_astar():
 					astar.connect_points(index, nav_points.find(position))
 
 
+func update_entities(node: Node3D, location: Vector3) -> void:
+	entities[node] = location
 

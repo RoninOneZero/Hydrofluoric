@@ -22,6 +22,7 @@ func move_along_path(origin: Vector3, delta: float) -> void:
 	# Check if agent is at the next location
 	if !position == _path[0]:
 		position = origin.move_toward(_path[0], delta * movement_speed)
+		# Rotate to look at point
 	else:
 		var checkpoint = _path[0]
 		_path.remove_at(0)
@@ -31,9 +32,15 @@ func move_along_path(origin: Vector3, delta: float) -> void:
 			start_movement = false
 			return
 		else: # reset start point then loop back
+			_rotate_mesh(_path[0])
 			move_along_path(checkpoint, delta)
 
 func set_path(arg: PackedVector3Array) -> void:
 	emit_signal("started_movement")
 	_path = arg
 	start_movement = true
+
+
+func _rotate_mesh(point: Vector3) -> void:
+	$Body.look_at(point)
+	$Body.rotation *= Vector3(0,1,1)
