@@ -112,12 +112,10 @@ visible = false
 [node name="NavPoint11" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
 visible = false
-connection_north = -1
 
 [node name="NavPoint12" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -2)
 visible = false
-connection_north = -1
 
 [node name="NavPoint13" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 2)
@@ -130,26 +128,18 @@ visible = false
 [node name="NavPoint10" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -4)
 visible = false
-connection_east = 3
 
 [node name="NavPoint15" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -4)
 visible = false
-connection_west = 4
 
 [node name="NavPoint24" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3.5, -4)
 visible = false
-connection_east = 3
-connection_south = -1
-connection_west = 2
 
 [node name="NavPoint25" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -4)
 visible = false
-connection_east = 1
-connection_south = -1
-connection_west = 4
 
 [node name="NavPoint16" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -2)
@@ -202,24 +192,18 @@ visible = false
 [node name="NavPoint30" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, 4)
 visible = false
-connection_east = 4
 
 [node name="NavPoint35" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3.5, 4)
 visible = false
-connection_east = 2
-connection_west = 3
 
 [node name="NavPoint36" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2.5, 4)
 visible = false
-connection_east = 4
-connection_west = 1
 
 [node name="NavPoint37" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2, 4)
 visible = false
-connection_west = 3
 
 [node name="NavPoint38" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2, 4)
@@ -240,7 +224,6 @@ visible = false
 [node name="NavPoint51" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 14)
 visible = false
-connection_west = 3
 
 [node name="NavPoint52" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 12)
@@ -338,19 +321,14 @@ visible = false
 [node name="NavPoint61" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 4, 14)
 visible = false
-connection_east = 4
 
 [node name="NavPoint62" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3.5, 14)
 visible = false
-connection_east = 2
-connection_west = 3
 
 [node name="NavPoint63" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 14)
 visible = false
-connection_east = 4
-connection_west = 1
 
 [node name="NavPoint64" parent="Services/Navigation/NavPoints" instance=ExtResource("5_865jn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 14)
