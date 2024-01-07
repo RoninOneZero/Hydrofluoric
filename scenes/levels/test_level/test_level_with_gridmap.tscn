@@ -1,0 +1,477 @@
+[gd_scene load_steps=19 format=3 uid="uid://cpges1t47l46i"]
+
+[ext_resource type="Script" path="res://scenes/levels/test_level/MissionController.gd" id="1_xwhm6"]
+[ext_resource type="Script" path="res://scenes/levels/navigation/Navigation.gd" id="2_32pp7"]
+[ext_resource type="PackedScene" uid="uid://c33gu0xi2p04" path="res://scenes/levels/level components/nav_point.tscn" id="3_xqmyw"]
+[ext_resource type="Script" path="res://scenes/levels/navigation/ControlWidget.gd" id="4_d7w4l"]
+[ext_resource type="Material" uid="uid://dc2d4ueh6nnyr" path="res://agents/control_widget.material" id="5_ikdfc"]
+[ext_resource type="Script" path="res://scenes/levels/test_level/Geometry.gd" id="6_rdya6"]
+[ext_resource type="MeshLibrary" uid="uid://bs65wg4764dtd" path="res://scenes/levels/level components/Prototype Tiles/prototype_blocks.meshlib" id="7_s4e70"]
+[ext_resource type="PackedScene" uid="uid://dbrl5rucni4l5" path="res://agents/agent.tscn" id="8_jc04y"]
+[ext_resource type="Script" path="res://scenes/levels/test_level/CameraPivot.gd" id="9_kp1ap"]
+[ext_resource type="PackedScene" uid="uid://bo8mxtcjk6sve" path="res://agents/guard/guard.tscn" id="10_kj7ue"]
+[ext_resource type="Script" path="res://scenes/levels/navigation/ControlTest.gd" id="11_kheyn"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_xqgci"]
+material = ExtResource("5_ikdfc")
+
+[sub_resource type="Animation" id="Animation_ul8py"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_h775u"]
+resource_name = "spin"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 1.5708), Vector3(0, 9.42478, 7.85398)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n78ja"]
+_data = {
+"RESET": SubResource("Animation_ul8py"),
+"spin": SubResource("Animation_h775u")
+}
+
+[sub_resource type="PrismMesh" id="PrismMesh_wq8uu"]
+material = ExtResource("5_ikdfc")
+size = Vector3(0.64, 1, 0.175)
+
+[sub_resource type="Environment" id="Environment_gcenm"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_k7h8o"]
+
+[node name="Level" type="Node" node_paths=PackedStringArray("player", "camera", "navigation", "geometry")]
+script = ExtResource("1_xwhm6")
+player = NodePath("Agents/Allies/Leviathan")
+camera = NodePath("Agents/Allies/Leviathan/CameraPivot")
+navigation = NodePath("Services/Navigation")
+geometry = NodePath("Environment/Geometry")
+
+[node name="Services" type="Node" parent="."]
+
+[node name="Navigation" type="Node" parent="Services"]
+script = ExtResource("2_32pp7")
+
+[node name="NavPoints" type="Node3D" parent="Services/Navigation"]
+
+[node name="NavPoint" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3, 1)
+spawn_point = true
+
+[node name="NavPoint2" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3, -1)
+spawn_point = true
+
+[node name="NavPoint3" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3, -3)
+
+[node name="NavPoint4" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, 1)
+
+[node name="NavPoint5" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, -1)
+
+[node name="NavPoint6" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, -3)
+
+[node name="NavPoint7" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 1)
+
+[node name="NavPoint8" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, -1)
+
+[node name="NavPoint9" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, -3)
+
+[node name="NavPoint10" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, 1)
+
+[node name="NavPoint11" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, -1)
+
+[node name="NavPoint20" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 3, 1)
+
+[node name="NavPoint21" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 3, -1)
+
+[node name="NavPoint22" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 3, 1)
+
+[node name="NavPoint23" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 3, -1)
+
+[node name="NavPoint28" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 3, -3)
+
+[node name="NavPoint29" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 3, -3)
+connection_east = 3
+
+[node name="NavPoint47" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 3.5, -3)
+connection_east = 1
+connection_west = 4
+
+[node name="NavPoint48" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 4.5, -3)
+connection_east = 3
+connection_west = 2
+
+[node name="NavPoint30" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 5, -3)
+connection_west = 4
+
+[node name="NavPoint31" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5, -3)
+
+[node name="NavPoint32" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 5, -3)
+
+[node name="NavPoint33" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 5, -3)
+
+[node name="NavPoint34" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5, -5)
+
+[node name="NavPoint35" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 5, -5)
+
+[node name="NavPoint36" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 5, -5)
+
+[node name="NavPoint37" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 5, -3)
+
+[node name="NavPoint38" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 5, -5)
+
+[node name="NavPoint39" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 5, 1)
+
+[node name="NavPoint41" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 5, 3)
+
+[node name="NavPoint42" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 5, 1)
+
+[node name="NavPoint44" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 5, 1)
+
+[node name="NavPoint43" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 5, 3)
+
+[node name="NavPoint45" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5, 1)
+connection_south = 3
+
+[node name="NavPoint46" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5.5, 3)
+connection_north = 4
+connection_south = 1
+
+[node name="NavPoint49" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 6.5, 5)
+connection_north = 2
+connection_south = 3
+
+[node name="NavPoint50" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 7, 7)
+connection_north = 4
+
+[node name="NavPoint51" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 7, 7)
+
+[node name="NavPoint52" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 7, 7)
+
+[node name="NavPoint53" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 7, 7)
+
+[node name="NavPoint54" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 7, 7)
+
+[node name="NavPoint55" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 7, 7)
+
+[node name="NavPoint56" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 7, 7)
+
+[node name="NavPoint57" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 7, 7)
+
+[node name="NavPoint58" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 7, 7)
+
+[node name="NavPoint59" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 7, 5)
+
+[node name="NavPoint60" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 7, 5)
+
+[node name="NavPoint61" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 7, 3)
+
+[node name="NavPoint62" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 7, 3)
+
+[node name="NavPoint63" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 7, 1)
+
+[node name="NavPoint64" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 7, 1)
+
+[node name="NavPoint65" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 7, -1)
+
+[node name="NavPoint66" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 7, -1)
+
+[node name="NavPoint67" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 7, -3)
+
+[node name="NavPoint68" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 7, -3)
+
+[node name="NavPoint69" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 7, -5)
+
+[node name="NavPoint70" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 7, -5)
+
+[node name="NavPoint72" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 7, -7)
+connection_north = 4
+
+[node name="NavPoint74" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5, -13)
+connection_south = 3
+
+[node name="NavPoint73" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 7, -7)
+connection_north = 4
+
+[node name="NavPoint94" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, -13)
+connection_south = 3
+
+[node name="NavPoint95" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5.5, -11)
+connection_north = 4
+connection_south = 1
+
+[node name="NavPoint96" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 6.5, -9)
+connection_north = 2
+connection_south = 3
+
+[node name="NavPoint97" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5.5, -11)
+connection_north = 4
+connection_south = 1
+
+[node name="NavPoint98" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 6.5, -9)
+connection_north = 2
+connection_south = 3
+
+[node name="NavPoint75" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, -15)
+
+[node name="NavPoint76" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5, -15)
+
+[node name="NavPoint77" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, -17)
+
+[node name="NavPoint78" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5, -17)
+
+[node name="NavPoint79" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, -19)
+
+[node name="NavPoint80" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5, -19)
+
+[node name="NavPoint81" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, -21)
+
+[node name="NavPoint83" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 5, -13)
+
+[node name="NavPoint84" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 5, -15)
+
+[node name="NavPoint85" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 5, -17)
+
+[node name="NavPoint86" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 5, -19)
+
+[node name="NavPoint87" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 5, -21)
+
+[node name="NavPoint88" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5, -13)
+
+[node name="NavPoint89" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5, -15)
+
+[node name="NavPoint90" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5, -17)
+
+[node name="NavPoint91" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5, -19)
+
+[node name="NavPoint92" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5, -21)
+
+[node name="NavPoint82" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5, -21)
+
+[node name="NavPoint40" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 5, -1)
+
+[node name="NavPoint24" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 3, 1)
+
+[node name="NavPoint25" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 3, -1)
+
+[node name="NavPoint26" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 3, 1)
+
+[node name="NavPoint27" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 3, -1)
+
+[node name="NavPoint12" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, -3)
+
+[node name="NavPoint14" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, -3)
+
+[node name="NavPoint15" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, -1)
+
+[node name="NavPoint17" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, 1)
+
+[node name="NavPoint19" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 3, 1)
+
+[node name="NavPoint16" parent="Services/Navigation/NavPoints" instance=ExtResource("3_xqmyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, -3)
+
+[node name="ControlWidget" type="Node3D" parent="Services/Navigation"]
+visible = false
+script = ExtResource("4_d7w4l")
+
+[node name="Sphere" type="MeshInstance3D" parent="Services/Navigation/ControlWidget"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("SphereMesh_xqgci")
+skeleton = NodePath("")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Services/Navigation/ControlWidget/Sphere"]
+libraries = {
+"": SubResource("AnimationLibrary_n78ja")
+}
+autoplay = "spin"
+
+[node name="NorthArrow" type="MeshInstance3D" parent="Services/Navigation/ControlWidget/Sphere"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -1.2)
+visible = false
+mesh = SubResource("PrismMesh_wq8uu")
+skeleton = NodePath("../..")
+
+[node name="SouthArrow" type="MeshInstance3D" parent="Services/Navigation/ControlWidget/Sphere"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0, 1.2)
+visible = false
+mesh = SubResource("PrismMesh_wq8uu")
+skeleton = NodePath("../..")
+
+[node name="EastArrow" type="MeshInstance3D" parent="Services/Navigation/ControlWidget/Sphere"]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 1.2, 0, 0)
+visible = false
+mesh = SubResource("PrismMesh_wq8uu")
+skeleton = NodePath("../..")
+
+[node name="WestArrow" type="MeshInstance3D" parent="Services/Navigation/ControlWidget/Sphere"]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -1.2, 0, 0)
+visible = false
+mesh = SubResource("PrismMesh_wq8uu")
+skeleton = NodePath("../..")
+
+[node name="EventBus" type="Node" parent="Services"]
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+editor_description = "A superfluous scene that exists purely as an example of how navigation nodes should be used."
+environment = SubResource("Environment_gcenm")
+camera_attributes = SubResource("CameraAttributesPractical_k7h8o")
+
+[node name="Geometry" type="Node3D" parent="Environment"]
+script = ExtResource("6_rdya6")
+
+[node name="GridMap" type="GridMap" parent="Environment/Geometry"]
+mesh_library = ExtResource("7_s4e70")
+data = {
+"cells": PackedInt32Array(65532, 65533, 1, 65532, 65534, 1, 65532, 65535, 1, 65532, 0, 1, 65532, 1, 1, 65533, 65533, 1, 65533, 65534, 1, 65533, 65535, 1, 65533, 0, 1, 65533, 1, 1, 65534, 65533, 1, 65534, 65534, 1, 65534, 65535, 1, 65534, 0, 1, 65534, 1, 1, 65535, 65533, 1, 65535, 65534, 1, 65535, 65535, 1, 65535, 0, 1, 65535, 1, 1, 0, 65533, 1, 0, 65534, 1, 0, 65535, 1, 0, 0, 1, 0, 1, 1, 1, 65533, 1, 1, 65534, 1, 1, 65535, 1, 1, 0, 1, 1, 1, 1, 2, 65533, 1, 2, 65534, 1, 2, 65535, 1, 2, 0, 1, 2, 1, 1, 3, 65533, 1, 3, 65534, 1, 3, 65535, 1, 3, 0, 1, 3, 1, 1, 4, 65533, 1, 4, 65534, 1, 4, 65535, 1, 4, 0, 1, 4, 1, 1, 5, 65533, 1, 5, 65534, 1, 5, 65535, 1, 5, 0, 1, 5, 1, 1, 6, 65533, 1, 6, 65534, 1, 6, 65535, 1, 6, 0, 1, 6, 1, 1, 7, 65533, 1, 7, 65534, 1, 7, 65535, 1, 7, 0, 1, 7, 1, 1, 8, 65533, 1, 8, 65534, 1, 8, 65535, 1, 8, 0, 1, 8, 1, 1, 9, 65533, 1, 9, 65534, 1, 9, 65535, 1, 9, 0, 1, 9, 1, 1, 10, 65533, 1, 10, 65534, 1, 10, 65535, 1, 10, 0, 1, 10, 1, 1, 11, 65533, 1, 11, 65534, 1, 11, 65535, 1, 11, 0, 1, 11, 1, 1, 12, 65533, 1, 12, 65534, 1, 12, 65535, 1, 12, 0, 1, 12, 1, 1, 131068, 1, 1, 131069, 1, 1, 131070, 1, 1, 131071, 1, 1, 65536, 1, 1, 65537, 1, 1, 65540, 1, 1, 65541, 1, 1, 65542, 1, 1, 65543, 1, 1, 65544, 1, 1, 65545, 1, 1, 65546, 1, 1, 65539, 1, 1, 65538, 1, 1, 65547, 1, 1, 65548, 1, 1, 131068, 0, 1, 131068, 65535, 1, 131068, 65534, 1, 131068, 65533, 1, 131069, 65533, 1, 131070, 65533, 1, 131071, 65533, 1, 65536, 65533, 1, 65537, 65533, 1, 65538, 65533, 1, 65548, 65533, 1, 65547, 65533, 1, 65546, 65533, 1, 65545, 65533, 1, 65544, 65533, 1, 65543, 65533, 1, 65542, 65533, 1, 65541, 65533, 1, 65540, 65533, 1, 65539, 65533, 1, 65539, 65534, 1, 65548, 0, 1, 65548, 65535, 1, 65548, 65534, 1, 65537, 0, 1, 65547, 0, 1, 65546, 0, 1, 65545, 0, 1, 65544, 0, 1, 65544, 65535, 1, 65544, 65534, 1, 65545, 65534, 1, 65546, 65534, 1, 65547, 65534, 1, 65547, 65535, 1, 65546, 65535, 1, 65545, 65535, 1, 131085, 2, 1, 131085, 1, 1, 131085, 0, 1, 131085, 65535, 1, 131085, 65534, 1, 131085, 65533, 1, 131085, 65532, 1, 131084, 65532, 1, 131083, 65532, 1, 131082, 65532, 1, 131081, 65532, 1, 131080, 65532, 1, 131080, 2, 1, 131082, 2, 1, 131083, 2, 1, 131084, 2, 1, 65543, 65534, 0, 131080, 65535, 1, 131080, 0, 1, 131080, 1, 1, 131080, 65533, 1, 131081, 65535, 1, 131082, 65535, 1, 131083, 65535, 1, 131082, 1, 1, 131072, 65533, 1, 131075, 65533, 1441793, 131072, 1, 1, 131075, 1, 1, 131081, 2, 1441792, 131081, 3, 1441793, 131080, 3, 1441793, 131079, 3, 1441793, 131078, 3, 1441793, 131077, 3, 1441793, 131076, 3, 1441793, 131075, 3, 1441793, 131074, 3, 1441793, 131073, 3, 1441793, 131072, 3, 1441793, 196618, 3, 1441793, 196617, 4, 1441793, 196616, 4, 1441793, 196615, 4, 1441793, 196614, 4, 1441793, 196613, 4, 1441793, 196612, 4, 1441793, 196611, 4, 1441793, 196610, 4, 1441793, 196609, 4, 1441793, 196608, 4, 1441793, 196616, 2, 1441793, 196615, 2, 1441793, 196614, 2, 1441793, 196613, 2, 1441793, 196612, 2, 1441793, 196611, 2, 1441793, 196611, 1, 1441793, 196611, 0, 1441793, 196611, 65534, 1441793, 196608, 1, 1441793, 196608, 2, 1441793, 196608, 3, 1441793, 196608, 0, 1441793, 196608, 65534, 1441793, 196608, 65533, 1441793, 196611, 65533, 1441793, 131072, 65532, 1441793, 131073, 65532, 1441793, 131074, 65532, 1441793, 131074, 2, 1441793, 131074, 1, 1441793, 131074, 0, 1441793, 131074, 65535, 1441793, 131074, 65534, 1441793, 131074, 65533, 1441793, 131073, 2, 1441793, 131073, 1, 1441793, 131073, 0, 1441793, 131073, 65535, 1441793, 131073, 65534, 1441793, 131073, 65533, 1441793, 131074, 65531, 1441792, 131073, 65531, 1441792, 65538, 65529, 1441793, 65537, 65529, 1441793, 65536, 65529, 1441793, 65536, 65528, 1441793, 65536, 65527, 1441793, 65536, 65526, 1441793, 65536, 65525, 1441793, 65537, 65525, 1441793, 65538, 65525, 1441793, 65538, 65526, 1441793, 65538, 65527, 1441793, 65538, 65528, 1441793, 65537, 65528, 1441793, 65537, 65527, 1441793, 65537, 65526, 1441793, 196607, 65526, 1441793, 196607, 65525, 1441793, 196608, 65532, 1441793, 131075, 65534, 1441793, 131075, 0, 1441793, 196611, 65532, 1441793, 131075, 65531, 1441793, 131075, 65530, 1441793, 196611, 65531, 1441793, 131072, 65530, 1441793, 131072, 65531, 1441793, 196608, 65531, 1441793, 196607, 65527, 1441793, 196607, 65528, 1441793, 196607, 65529, 1441793, 131076, 65529, 1441793, 131076, 65528, 1441793, 131076, 65527, 1441793, 131076, 65526, 1441793, 131076, 65525, 1441793, 196607, 65524, 1441793, 131072, 65524, 1441793, 131073, 65524, 1441793, 131074, 65524, 1441793, 131075, 65524, 1441793, 131076, 65524, 1441793, 65539, 65529, 1441793, 65539, 65528, 1441793, 65539, 65527, 1441793, 65539, 65526, 1441793, 65539, 65525, 1441793, 65540, 65529, 1441793, 65540, 65528, 1441793, 65540, 65527, 1441793, 65540, 65526, 1441793, 65540, 65525, 1441793, 65540, 65524, 1441793, 65539, 65524, 1441793, 65538, 65524, 1441793, 65537, 65524, 1441793, 65536, 65524, 1441793, 131071, 65524, 1441793, 131071, 65529, 1441793, 131071, 65528, 1441793, 131071, 65527, 1441793, 131071, 65526, 1441793, 131071, 65525, 1441793, 196607, 65530, 1441793, 131076, 65530, 1441793, 196611, 65530, 1441793, 196608, 65530, 1441793, 65539, 65535, 1441793, 65537, 65535, 1441793, 131072, 65534, 1441793, 131072, 0, 1441793)
+}
+metadata/_editor_floor_ = Vector3(0, 2, 0)
+
+[node name="Agents" type="Node" parent="."]
+
+[node name="Allies" type="Node3D" parent="Agents"]
+
+[node name="Leviathan" parent="Agents/Allies" groups=["Player"] instance=ExtResource("8_jc04y")]
+
+[node name="CameraPivot" type="Node3D" parent="Agents/Allies/Leviathan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
+script = ExtResource("9_kp1ap")
+
+[node name="Camera3D" type="Camera3D" parent="Agents/Allies/Leviathan/CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
+current = true
+fov = 60.0
+
+[node name="Enemies" type="Node3D" parent="Agents"]
+
+[node name="Guard" parent="Agents/Enemies" node_paths=PackedStringArray("target_list") instance=ExtResource("10_kj7ue")]
+target_list = [NodePath("../../Allies/Leviathan")]
+
+[node name="Guard2" parent="Agents/Enemies" node_paths=PackedStringArray("target_list") instance=ExtResource("10_kj7ue")]
+target_list = [NodePath("../../Allies/Leviathan")]
+
+[node name="ControlTest" type="Control" parent="." node_paths=PackedStringArray("player", "navigation", "camera")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_kheyn")
+player = NodePath("../Agents/Allies/Leviathan")
+navigation = NodePath("../Services/Navigation")
+camera = NodePath("../Agents/Allies/Leviathan/CameraPivot")

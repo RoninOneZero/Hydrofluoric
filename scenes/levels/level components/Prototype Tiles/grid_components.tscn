@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkad8tsm0nl0v"]
+
+[ext_resource type="PackedScene" uid="uid://bo4lbs4dktmgy" path="res://scenes/levels/level components/prototype_ramp.tscn" id="1_gdhtq"]
+[ext_resource type="PackedScene" uid="uid://cn0cpmky25y2f" path="res://scenes/levels/level components/prototype_tile.tscn" id="2_jk2yi"]
+
+[node name="GridComponents" type="Node3D"]
+
+[node name="prototype_ramp" parent="." instance=ExtResource("1_gdhtq")]
+
+[node name="prototype_tile" parent="." instance=ExtResource("2_jk2yi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6967, 0, 0)

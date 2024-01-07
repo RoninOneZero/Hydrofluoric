@@ -15,45 +15,53 @@ enum BlockType {NONE = -1, FLOOR, ONE_UP, ONE_DOWN, HALF_UP, HALF_DOWN}
 @export var connection_west: BlockType
 
 var connections := [
-    connection_north,
-    connection_east,
-    connection_south,
-    connection_west
+	connection_north,
+	connection_east,
+	connection_south,
+	connection_west
 ]
 
 func _ready() -> void:
-    $MeshInstance3D.hide()
+	$MeshInstance3D.hide()
 
 func highlight() -> void:
-    show()
-    $FloorMarker.show()
+	show()
+	$FloorMarker.show()
 
 func highlight_off() ->void:
-    $FloorMarker.hide()
+	$FloorMarker.hide()
 
 
 ## Possible to have this node just check every single point, and not just based on params
 func get_connections() -> PackedVector3Array:
-    var list: PackedVector3Array = []
+	var list: PackedVector3Array = []
 
-    match connection_north:
-        BlockType.FLOOR: list.append(global_position + block_size * Vector3.FORWARD)
+	match connection_north:
+		BlockType.FLOOR: list.append(global_position + block_size * Vector3.FORWARD)
+		BlockType.ONE_UP: list.append(global_position + Vector3(0, 1.0, -block_size))
+		BlockType.HALF_UP: list.append(global_position + Vector3(0, 0.5, -block_size))
+		BlockType.ONE_DOWN: list.append(global_position + Vector3(0, -1.0, -block_size))
+		BlockType.HALF_DOWN: list.append(global_position + Vector3(0, -0.5, -block_size))
 
-    match connection_east:
-        BlockType.FLOOR: list.append(global_position + block_size * Vector3.RIGHT)
-        BlockType.ONE_UP: list.append(global_position + Vector3(block_size, 1.0, 0))
-        BlockType.HALF_UP: list.append(global_position + Vector3(block_size, 0.5, 0))
-        BlockType.ONE_DOWN: list.append(global_position + Vector3(block_size, -1.0, 0))
-        BlockType.HALF_DOWN: list.append(global_position + Vector3(block_size, -0.5, 0))
+	match connection_east:
+		BlockType.FLOOR: list.append(global_position + block_size * Vector3.RIGHT)
+		BlockType.ONE_UP: list.append(global_position + Vector3(block_size, 1.0, 0))
+		BlockType.HALF_UP: list.append(global_position + Vector3(block_size, 0.5, 0))
+		BlockType.ONE_DOWN: list.append(global_position + Vector3(block_size, -1.0, 0))
+		BlockType.HALF_DOWN: list.append(global_position + Vector3(block_size, -0.5, 0))
 
-    match connection_south:
-        BlockType.FLOOR: list.append(global_position + block_size * Vector3.BACK)
-        
-    match connection_west:
-        BlockType.FLOOR: list.append(global_position + block_size * Vector3.LEFT)
-        BlockType.ONE_UP: list.append(global_position + Vector3(-block_size, 1.0, 0))
-        BlockType.HALF_UP: list.append(global_position + Vector3(-block_size, 0.5, 0))
-        BlockType.ONE_DOWN: list.append(global_position + Vector3(-block_size, -1.0, 0))
-        BlockType.HALF_DOWN: list.append(global_position + Vector3(-block_size, -0.5, 0))
+	match connection_south:
+		BlockType.FLOOR: list.append(global_position + block_size * Vector3.BACK)
+		BlockType.ONE_UP: list.append(global_position + Vector3(0, 1.0, block_size))
+		BlockType.HALF_UP: list.append(global_position + Vector3(0, 0.5, block_size))
+		BlockType.ONE_DOWN: list.append(global_position + Vector3(0, -1.0, block_size))
+		BlockType.HALF_DOWN: list.append(global_position + Vector3(0, -0.5, block_size))
+		
+	match connection_west:
+		BlockType.FLOOR: list.append(global_position + block_size * Vector3.LEFT)
+		BlockType.ONE_UP: list.append(global_position + Vector3(-block_size, 1.0, 0))
+		BlockType.HALF_UP: list.append(global_position + Vector3(-block_size, 0.5, 0))
+		BlockType.ONE_DOWN: list.append(global_position + Vector3(-block_size, -1.0, 0))
+		BlockType.HALF_DOWN: list.append(global_position + Vector3(-block_size, -0.5, 0))
 
-    return list
+	return list
