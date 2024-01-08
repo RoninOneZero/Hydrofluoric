@@ -4,12 +4,15 @@ extends Node3D
 var block_size = 2
 var valid_points: PackedVector3Array = []
 
+var destination := Vector3.ZERO
+
 var camera_bias := 0.0
 
 signal location_selected
 
-func _ready() -> void:
-	hide()
+# func _ready() -> void:
+# 	hide()
+# 	position = Vector3.ZERO
 
 func _unhandled_input(event: InputEvent) -> void:
 	if valid_points.is_empty():
@@ -73,5 +76,6 @@ func _move_cursor(direction: Vector3) -> void:
 
 func _confirm_location() -> void:
 	valid_points.clear()
-	hide()
+	destination = global_position
+	position = Vector3.ZERO
 	emit_signal("location_selected")

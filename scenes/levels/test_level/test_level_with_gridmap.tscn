@@ -356,7 +356,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 3, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, -3)
 
 [node name="ControlWidget" type="Node3D" parent="Services/Navigation"]
-visible = false
 script = ExtResource("4_d7w4l")
 
 [node name="Sphere" type="MeshInstance3D" parent="Services/Navigation/ControlWidget"]
@@ -418,7 +417,7 @@ metadata/_editor_floor_ = Vector3(0, 1, 0)
 [node name="Leviathan" parent="Agents/Allies" groups=["Player"] instance=ExtResource("8_jc04y")]
 
 [node name="CameraPivot" type="Node3D" parent="Agents/Allies/Leviathan"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 script = ExtResource("9_kp1ap")
 
 [node name="Camera3D" type="Camera3D" parent="Agents/Allies/Leviathan/CameraPivot"]

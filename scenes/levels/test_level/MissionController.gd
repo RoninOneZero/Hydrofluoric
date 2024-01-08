@@ -9,18 +9,19 @@ extends Node
 
 func _ready() -> void:
 	# DEBUG
-	print(Vector3.RIGHT.rotated(Vector3.UP, PI / 2))
 
 	# Set control
 	$ControlTest.player = player
 	$ControlTest.camera = camera
 
 	# Set camera
-	camera.target = player
+	camera.target = navigation.control_widget
 
 
 	# Set navigation
 	navigation.initialize_navigation()
+	navigation.control_widget.reparent(player)
+	navigation.control_widget.position = Vector3.ZERO
 
 	# Set player
 	player.global_position = navigation.spawn_point

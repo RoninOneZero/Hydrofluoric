@@ -18,13 +18,13 @@ var has_control: bool = false
 signal control_returned
 
 func _ready() -> void:
-	control_widget.hide()
+	#control_widget.hide()
 	control_widget.block_size = block_size
-
 
 	
 func initialize_navigation() -> void:
 	_initialize_astar()
+	control_widget.position = spawn_point
 
 
 ## Return a path based on a location and distance.
@@ -39,7 +39,7 @@ func process_movement(origin: Vector3, distance: int) -> PackedVector3Array:
 	# Get a location from the widget
 	control_widget.get_destination(origin, active_points)
 	await control_widget.location_selected
-	var destination = control_widget.position
+	var destination = control_widget.destination
 
 	# Remove any markers
 	get_tree().call_group("NavPoints", "highlight_off")
