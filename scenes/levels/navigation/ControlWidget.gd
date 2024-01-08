@@ -4,6 +4,8 @@ extends Node3D
 var block_size = 2
 var valid_points: PackedVector3Array = []
 
+var camera_bias := 0.0
+
 signal location_selected
 
 func _ready() -> void:
@@ -12,15 +14,16 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if valid_points.is_empty():
 		return
+
 	# Process directional movement
 	if event.is_action_pressed("ui_up"):
-		_move_cursor(Vector3.FORWARD)
+		_move_cursor(Vector3.FORWARD.rotated(Vector3.UP, camera_bias))
 	if event.is_action_pressed("ui_down"):
-		_move_cursor(Vector3.BACK)
+		_move_cursor(Vector3.BACK.rotated(Vector3.UP, camera_bias))
 	if event.is_action_pressed("ui_left"):
-		_move_cursor(Vector3.LEFT)
+		_move_cursor(Vector3.LEFT.rotated(Vector3.UP, camera_bias))
 	if event.is_action_pressed("ui_right"):
-		_move_cursor(Vector3.RIGHT)
+		_move_cursor(Vector3.RIGHT.rotated(Vector3.UP, camera_bias))
 	# Confirm movement
 	if event.is_action_pressed("ui_accept"):
 		_confirm_location()
@@ -33,6 +36,7 @@ func get_destination(origin: Vector3, points: PackedVector3Array) -> void:
 
 
 func _move_cursor(direction: Vector3) -> void:
+	direction = direction.round()
 	#Vector3(0, 0.5, 0)
 	var target = global_position + (block_size * direction)
 

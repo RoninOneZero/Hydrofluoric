@@ -9,11 +9,15 @@ extends Node
 
 func _ready() -> void:
 	# DEBUG
-	
+	print(Vector3.RIGHT.rotated(Vector3.UP, PI / 2))
 
 	# Set control
 	$ControlTest.player = player
 	$ControlTest.camera = camera
+
+	# Set camera
+	camera.target = player
+
 
 	# Set navigation
 	navigation.initialize_navigation()
