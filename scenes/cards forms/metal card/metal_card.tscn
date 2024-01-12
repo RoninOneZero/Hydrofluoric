@@ -32,6 +32,7 @@ offset_right = -940.0
 offset_bottom = -260.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 2
 script = ExtResource("2_rjgar")
 
 [node name="ColorFill" type="TextureRect" parent="."]
@@ -145,3 +146,6 @@ text = "▞▞▞"
 horizontal_alignment = 2
 vertical_alignment = 1
 clip_text = true
+
+[connection signal="mouse_entered" from="." to="." method="grab_focus"]
+[connection signal="mouse_exited" from="." to="." method="release_focus"]

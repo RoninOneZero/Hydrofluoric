@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bn73bqbak25q1"]
+
+[ext_resource type="Script" path="res://scenes/levels/test_level/DeckHandler.gd" id="1_6jgvi"]
+[ext_resource type="Resource" uid="uid://be5smnqusaila" path="res://card resources/cards/metal cards/Aria.tres" id="2_r8ks4"]
+[ext_resource type="Resource" uid="uid://bn4ahjettrbrq" path="res://card resources/cards/metal cards/Pillsud.tres" id="3_fgw02"]
+[ext_resource type="Resource" uid="uid://b4hdqkequho36" path="res://card resources/cards/metal cards/Zet.tres" id="4_fpfeg"]
+
+[node name="DeckHandler" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6jgvi")
+deck = Array[Resource("res://src/resources/metal_card_data.gd")]([ExtResource("2_r8ks4"), ExtResource("3_fgw02"), ExtResource("4_fpfeg")])
+
+[node name="Inspector" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hand" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 706.0
+offset_bottom = 706.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme_override_constants/separation = 550

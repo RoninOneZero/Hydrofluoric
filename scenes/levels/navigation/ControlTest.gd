@@ -8,6 +8,9 @@ extends Control
 var has_control := true
 var camera_motion := false
 
+var state := "move"
+
+
 func _input(event):
 	# Overrides.
 	if event.is_action_pressed("quit"):
@@ -23,9 +26,12 @@ func _input(event):
 	if !has_control:
 		return
 	# Contextual actions.
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("ui_accept") and state == "move":
 		get_viewport().set_input_as_handled() # Why does this work				
 		await give_move_order(3)
+
+	if event.is_action_pressed("ui_accept") and state == "hand":
+		pass
 
 ## Orders the player to move a given distance. Called with await.
 func give_move_order(move_distance: int = 3) -> void:

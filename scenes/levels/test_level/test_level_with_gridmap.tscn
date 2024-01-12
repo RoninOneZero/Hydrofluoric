@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cpges1t47l46i"]
+[gd_scene load_steps=20 format=3 uid="uid://cpges1t47l46i"]
 
 [ext_resource type="Script" path="res://scenes/levels/test_level/MissionController.gd" id="1_xwhm6"]
 [ext_resource type="Script" path="res://scenes/levels/navigation/Navigation.gd" id="2_32pp7"]
@@ -11,8 +11,7 @@
 [ext_resource type="Script" path="res://scenes/levels/test_level/CameraPivot.gd" id="9_kp1ap"]
 [ext_resource type="PackedScene" uid="uid://bo8mxtcjk6sve" path="res://agents/guard/guard.tscn" id="10_kj7ue"]
 [ext_resource type="Script" path="res://scenes/levels/navigation/ControlTest.gd" id="11_kheyn"]
-[ext_resource type="Script" path="res://scenes/levels/test_level/DeckHandler.gd" id="12_63cjf"]
-[ext_resource type="Resource" uid="uid://be5smnqusaila" path="res://card resources/cards/metal cards/Aria.tres" id="13_560im"]
+[ext_resource type="PackedScene" uid="uid://bn73bqbak25q1" path="res://scenes/interface/deck handler/deck_handler.tscn" id="12_em4om"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_xqgci"]
 material = ExtResource("5_ikdfc")
@@ -449,12 +448,5 @@ player = NodePath("../Agents/Allies/Leviathan")
 navigation = NodePath("../Services/Navigation")
 camera = NodePath("../Agents/Allies/Leviathan/CameraPivot")
 
-[node name="DeckHandler" type="Control" parent="ControlTest"]
+[node name="DeckHandler" parent="ControlTest" instance=ExtResource("12_em4om")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("12_63cjf")
-deck = Array[Resource("res://src/resources/metal_card_data.gd")]([ExtResource("13_560im"), ExtResource("13_560im"), ExtResource("13_560im")])
