@@ -11,5 +11,6 @@ info = "[Arc Warden]
 Literally 2 lads."
 cost = 12
 portrait = ExtResource("1_m0gur")
+movement = 5
 rarity = 1
 limit = 4
